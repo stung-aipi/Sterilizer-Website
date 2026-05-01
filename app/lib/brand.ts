@@ -1,6 +1,7 @@
-// Placeholder brand name — naming sprint pending per PRD §5.3 / §14.1.
+// Working brand name — currently leading candidate from the naming sprint.
+// Direction C (geographic / heritage) per PRD §5.3.
 // Change this single constant to retitle the entire site.
-export const BRAND = "Lumen";
+export const BRAND = "Forth";
 
 export const TAGLINE = "Clean water, in any bottle, in seconds.";
 export const SUBLINE = "Drop it in. Shake. Drink.";
@@ -40,7 +41,7 @@ export const FAQS = [
   },
   {
     q: "What about sediment, lead, or PFAS?",
-    a: "UV-C disinfects — it doesn't filter. For visibly cloudy water or known chemical contamination, pair Lumen with a sediment filter. We're transparent about this on the How It Works page.",
+    a: "UV-C disinfects — it doesn't filter. For visibly cloudy water or known chemical contamination, pair Forth with a sediment filter. We're transparent about this on the How It Works page.",
   },
   {
     q: "How is it charged?",

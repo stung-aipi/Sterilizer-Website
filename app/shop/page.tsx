@@ -2,12 +2,12 @@ import Link from "next/link";
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 import { DeviceVisual } from "../components/DeviceVisual";
 
-export const metadata = { title: "Shop — Lumen" };
+export const metadata = { title: "Shop — Forth" };
 
 const PRODUCTS = [
-  { handle: "lumen-1", title: "Lumen", subtitle: "The original sterilizer", price: "$39", body: "#1A2433", dome: "#C8D4DC" },
-  { handle: "lumen-1-coral", title: "Lumen — Coral", subtitle: "Limited release", price: "$44", body: "#3F2424", dome: "#E89B7C" },
-  { handle: "lumen-multi", title: "Lumen × 2", subtitle: "Family pack", price: "$72", body: "#1A2433", dome: "#A6C7B6" },
+  { handle: "forth-1", title: "Forth", subtitle: "The original sterilizer", price: "$39", body: "#1A2433", dome: "#C8D4DC" },
+  { handle: "forth-1-coral", title: "Forth — Coral", subtitle: "Limited release", price: "$44", body: "#3F2424", dome: "#E89B7C" },
+  { handle: "forth-multi", title: "Forth × 2", subtitle: "Family pack", price: "$72", body: "#1A2433", dome: "#A6C7B6" },
   { handle: "dome-replacement", title: "Replacement domes", subtitle: "Pack of 2", price: "$12", body: "#202020", dome: "#FFE6A1" },
   { handle: "travel-case", title: "Travel case", subtitle: "Felt-lined, magnetic", price: "$24", body: "#262626", dome: "#9DB7C6" },
   { handle: "induction-base", title: "Induction base", subtitle: "Spare charger", price: "$19", body: "#1F1F1F", dome: "#C8D4DC" },

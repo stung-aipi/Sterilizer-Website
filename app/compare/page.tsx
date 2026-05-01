@@ -1,7 +1,7 @@
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 import { COMPARE_ROWS, BRAND } from "../lib/brand";
 
-export const metadata = { title: "Compare — Lumen" };
+export const metadata = { title: "Compare — Forth" };
 
 export default function Compare() {
   return (

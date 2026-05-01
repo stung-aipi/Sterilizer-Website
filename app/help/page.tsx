@@ -1,7 +1,7 @@
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 import { FAQS } from "../lib/brand";
 
-export const metadata = { title: "Help — Lumen" };
+export const metadata = { title: "Help — Forth" };
 
 const CATEGORIES = ["Product", "Shipping", "Returns", "Warranty", "App"];
 
@@ -12,7 +12,7 @@ export default function Help() {
         <Eyebrow>Help & FAQ</Eyebrow>
         <H1>Answers, briefly.</H1>
         <Lead>
-          Most things people ask, answered in under fifty words. For anything else, email support@lumen.co — typical response is under 4 hours.
+          Most things people ask, answered in under fifty words. For anything else, email support@forth.co — typical response is under 4 hours.
         </Lead>
       </header>
 

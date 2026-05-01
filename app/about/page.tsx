@@ -1,6 +1,6 @@
 import { PageShell, Eyebrow, H1, H2, Lead } from "../components/PageShell";
 
-export const metadata = { title: "About — Lumen" };
+export const metadata = { title: "About — Forth" };
 
 export default function About() {
   return (
@@ -9,7 +9,7 @@ export default function About() {
         <Eyebrow>About</Eyebrow>
         <H1>A small company solving a small but real problem.</H1>
         <Lead>
-          Lumen was started in Edinburgh in 2024 after one too many trips spent rationing bottled water. Our mission is straightforward: make safe drinking water available wherever a bottle is.
+          Forth was started in Edinburgh in 2024 after one too many trips spent rationing bottled water. Our mission is straightforward: make safe drinking water available wherever a bottle is.
         </Lead>
       </header>
 
@@ -30,7 +30,7 @@ export default function About() {
           <div>
             <H2>Contact.</H2>
             <p className="mt-4 text-[16px] leading-[1.7] text-neutral-700">
-              Lumen Ltd · 11 East Crosscauseway, Edinburgh EH8 9HE · hello@lumen.co
+              Forth Ltd · 11 East Crosscauseway, Edinburgh EH8 9HE · hello@forth.co
             </p>
           </div>
         </div>

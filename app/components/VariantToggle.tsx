@@ -6,16 +6,14 @@ import { usePathname } from "next/navigation";
 const VARIANTS = [
   { id: "a", href: "/", label: "A · Editorial" },
   { id: "b", href: "/option-b", label: "B · Engineered" },
-  { id: "c", href: "/option-c", label: "C · Bright" },
 ] as const;
 
 type Tone = "light" | "dark";
 
-export function VariantToggle({ active, tone = "light" }: { active: "a" | "b" | "c"; tone?: Tone }) {
+export function VariantToggle({ active, tone = "light" }: { active: "a" | "b"; tone?: Tone }) {
   // Reads pathname so the active state stays correct if user navigates between variants.
   const path = usePathname();
-  const inferred: "a" | "b" | "c" =
-    path === "/option-b" ? "b" : path === "/option-c" ? "c" : "a";
+  const inferred: "a" | "b" = path === "/option-b" ? "b" : "a";
   const current = active ?? inferred;
 
   const wrap =

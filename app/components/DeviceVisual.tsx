@@ -2,6 +2,8 @@
 // stays themable per variant via currentColor / explicit props,
 // and works as a placeholder until real product photography lands.
 
+import { BRAND } from "../lib/brand";
+
 type Props = {
   className?: string;
   body?: string;       // body color
@@ -19,7 +21,7 @@ export function DeviceVisual({
   glow = "#7FB3FF",
   ink = "#0F1B2D",
   glowOn = false,
-  wordmark = "LUMEN",
+  wordmark = BRAND.toUpperCase(),
 }: Props) {
   return (
     <svg viewBox="0 0 280 600" className={className} aria-hidden>

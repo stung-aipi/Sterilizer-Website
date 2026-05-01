@@ -1,7 +1,7 @@
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 import { PRESS_QUOTES } from "../lib/brand";
 
-export const metadata = { title: "Press — Lumen" };
+export const metadata = { title: "Press — Forth" };
 
 export default function Press() {
   return (
@@ -10,11 +10,11 @@ export default function Press() {
         <Eyebrow>Press</Eyebrow>
         <H1>For media and editorial.</H1>
         <Lead>
-          High-resolution photography, founder bio, fact sheet, and brand guidelines — all in one zip. For interview requests, email press@lumen.co.
+          High-resolution photography, founder bio, fact sheet, and brand guidelines — all in one zip. For interview requests, email press@forth.co.
         </Lead>
         <div className="mt-8 flex gap-3">
           <a href="#" className="rounded-full bg-neutral-900 px-5 py-3 text-[14px] text-white">Download press kit (.zip)</a>
-          <a href="mailto:press@lumen.co" className="rounded-full bg-white px-5 py-3 text-[14px] ring-1 ring-black/10">press@lumen.co</a>
+          <a href="mailto:press@forth.co" className="rounded-full bg-white px-5 py-3 text-[14px] ring-1 ring-black/10">press@forth.co</a>
         </div>
       </header>
 
@@ -34,9 +34,9 @@ export default function Press() {
         <Eyebrow>Press releases</Eyebrow>
         <ul className="mt-6 divide-y divide-black/10">
           {[
-            { date: "Mar 2026", h: "Lumen opens UK and US pre-orders" },
-            { date: "Feb 2026", h: "Lumen closes seed round led by Founders Fund" },
-            { date: "Jan 2026", h: "Lumen unveils submersible UV-C sterilizer at CES" },
+            { date: "Mar 2026", h: "Forth opens UK and US pre-orders" },
+            { date: "Feb 2026", h: "Forth closes seed round led by Founders Fund" },
+            { date: "Jan 2026", h: "Forth unveils submersible UV-C sterilizer at CES" },
           ].map((r) => (
             <li key={r.h} className="flex flex-wrap items-center justify-between gap-3 py-5">
               <div>

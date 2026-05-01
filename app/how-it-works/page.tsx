@@ -3,7 +3,7 @@ import { PageShell, Eyebrow, H1, H2, Lead } from "../components/PageShell";
 import { DeviceVisual } from "../components/DeviceVisual";
 import { SPECS, BRAND } from "../lib/brand";
 
-export const metadata = { title: "How It Works — Lumen" };
+export const metadata = { title: "How It Works — Forth" };
 
 export default function HowItWorks() {
   return (
@@ -50,7 +50,7 @@ export default function HowItWorks() {
         <Eyebrow>Honesty section</Eyebrow>
         <H2>What it doesn't do.</H2>
         <p className="mt-4 max-w-2xl text-[16px] leading-[1.65] text-neutral-700">
-          UV-C disinfects — it doesn't filter. Lumen will not remove sediment, heavy metals, PFAS, or chlorine. For visibly cloudy or chemically contaminated water, pair Lumen with a sediment filter. We build trust by being clear about this.
+          UV-C disinfects — it doesn't filter. Forth will not remove sediment, heavy metals, PFAS, or chlorine. For visibly cloudy or chemically contaminated water, pair Forth with a sediment filter. We build trust by being clear about this.
         </p>
         <Link href="/technology" className="mt-6 inline-block text-[14px] underline-offset-4 hover:underline">
           Read the full technology page →

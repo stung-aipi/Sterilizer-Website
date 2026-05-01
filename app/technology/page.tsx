@@ -1,7 +1,7 @@
 import { PageShell, Eyebrow, H1, H2, Lead } from "../components/PageShell";
 import { Logomark } from "../components/Logomark";
 
-export const metadata = { title: "The Technology — Lumen" };
+export const metadata = { title: "The Technology — Forth" };
 
 export default function Technology() {
   return (
@@ -10,7 +10,7 @@ export default function Technology() {
         <Eyebrow>The Technology</Eyebrow>
         <H1>UV-C, refracted across twelve faces.</H1>
         <Lead>
-          Lumen is a 12-faceted geodesic UV-C emitter with multi-directional dose distribution. This page covers the science, the engineering, and the patent.
+          Forth is a 12-faceted geodesic UV-C emitter with multi-directional dose distribution. This page covers the science, the engineering, and the patent.
         </Lead>
       </header>
 

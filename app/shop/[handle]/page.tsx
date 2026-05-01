@@ -4,24 +4,24 @@ import { DeviceVisual } from "../../components/DeviceVisual";
 import { SPECS } from "../../lib/brand";
 
 const PRODUCTS: Record<string, { title: string; subtitle: string; price: string; body: string; dome: string; copy: string }> = {
-  "lumen-1": {
-    title: "Lumen",
+  "forth-1": {
+    title: "Forth",
     subtitle: "The original submersible UV-C sterilizer",
     price: "$39",
     body: "#1A2433",
     dome: "#C8D4DC",
-    copy: "The complete kit: Lumen, induction charging base, fabric travel pouch, and two-year warranty.",
+    copy: "The complete kit: Forth, induction charging base, fabric travel pouch, and two-year warranty.",
   },
-  "lumen-1-coral": {
-    title: "Lumen — Coral",
+  "forth-1-coral": {
+    title: "Forth — Coral",
     subtitle: "Limited colorway, 500 units",
     price: "$44",
     body: "#3F2424",
     dome: "#E89B7C",
     copy: "A warmer take on the original. Same internals, different mood.",
   },
-  "lumen-multi": {
-    title: "Lumen × 2",
+  "forth-multi": {
+    title: "Forth × 2",
     subtitle: "For families, partners, gym bags",
     price: "$72",
     body: "#1A2433",

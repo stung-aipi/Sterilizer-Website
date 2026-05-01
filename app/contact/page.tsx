@@ -1,6 +1,6 @@
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 
-export const metadata = { title: "Contact — Lumen" };
+export const metadata = { title: "Contact — Forth" };
 
 export default function Contact() {
   return (
@@ -9,7 +9,7 @@ export default function Contact() {
         <Eyebrow>Contact</Eyebrow>
         <H1>How to reach us.</H1>
         <Lead>
-          Customer support: support@lumen.co · Press: press@lumen.co · Wholesale: wholesale@lumen.co · Mail: 11 East Crosscauseway, Edinburgh EH8 9HE.
+          Customer support: support@forth.co · Press: press@forth.co · Wholesale: wholesale@forth.co · Mail: 11 East Crosscauseway, Edinburgh EH8 9HE.
         </Lead>
       </header>
 

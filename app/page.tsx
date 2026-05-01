@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { BRAND, TAGLINE, SUBLINE, SPECS, COMPARE_ROWS, FAQS, USE_CASES, PRESS_QUOTES } from "./lib/brand";
+import { HorizontalDeviceMark } from "./components/HorizontalDeviceMark";
 import { Logomark } from "./components/Logomark";
-import { DeviceVisual } from "./components/DeviceVisual";
+import { DeviceCylinder } from "./components/DeviceCylinder";
 import { VariantToggle } from "./components/VariantToggle";
 import { SiteFooter } from "./components/SiteFooter";
+import { ExplodedReveal } from "./components/ExplodedReveal";
 
 export const metadata = {
-  title: `${BRAND} — A — Editorial`,
+  title: `${BRAND} — Clean water, in any bottle, in seconds.`,
+  description: `${BRAND} is a submersible UV-C sterilizer the size of a marker. Designed and assembled in Scotland.`,
 };
 
 const NAV = [
@@ -23,9 +26,8 @@ export default function HomeA() {
       {/* Header */}
       <header className="relative z-20">
         <div className="mx-auto flex max-w-[1240px] items-center justify-between px-8 py-6">
-          <Link href="/" className="flex items-center gap-2">
-            <Logomark className="h-5 w-5 text-a-ink" />
-            <span className="font-serif text-[20px] tracking-tight">{BRAND}</span>
+          <Link href="/" className="flex items-center text-a-ink" aria-label={BRAND}>
+            <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
             {NAV.map((n) => (
@@ -48,7 +50,7 @@ export default function HomeA() {
       <section className="relative">
         <div className="mx-auto grid max-w-[1240px] grid-cols-12 gap-8 px-8 pb-24 pt-20 md:pt-28">
           <div className="col-span-12 md:col-span-7">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-a-ink/60">Patent-pending · UV-C</div>
+            <div className="text-[12px] uppercase tracking-[0.18em] text-a-ink/60">UV-C · Designed in Scotland</div>
             <h1 className="mt-8 font-serif text-[56px] leading-[0.98] tracking-tightish text-a-ink md:text-[88px]">
               Clean water,
               <br />
@@ -57,7 +59,7 @@ export default function HomeA() {
               in seconds.
             </h1>
             <p className="mt-8 max-w-md text-[16px] leading-[1.6] text-a-ink/75">
-              {BRAND} is a submersible UV-C sterilizer the size of a marker. It drops into the bottle you already own, activates with a shake, and disinfects 99.9% of bacteria, viruses, and protozoa in 60 seconds.
+              {BRAND} is a submersible UV-C sterilizer the size of a marker. It drops into the bottle in your hand, activates on a shake, and neutralises 99.9% of bacteria, viruses, and protozoa in sixty seconds.
             </p>
             <div className="mt-10 flex items-center gap-4">
               <Link
@@ -72,10 +74,10 @@ export default function HomeA() {
             </div>
           </div>
 
-          <div className="col-span-12 flex justify-center md:col-span-5 md:justify-end">
+          <div className="col-span-12 flex justify-center md:col-span-5 md:justify-center">
             <div className="relative">
               <div className="absolute -inset-12 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
-              <DeviceVisual
+              <DeviceCylinder
                 className="relative h-[460px] w-auto md:h-[560px]"
                 body="#1A2433"
                 dome="#C8D4DC"
@@ -86,14 +88,38 @@ export default function HomeA() {
           </div>
         </div>
 
-        {/* Marquee strip of credentials */}
+        {/* Quiet credentials strip */}
         <div className="border-y border-a-rule bg-a-bg/60">
-          <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-8 overflow-hidden px-8 py-5 text-[12px] uppercase tracking-[0.18em] text-a-ink/55">
-            <span>UK & US shipping</span>
-            <span className="hidden md:inline">EPA log-reduction validated</span>
-            <span>30 cycles per charge</span>
+          <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-8 overflow-hidden px-8 py-5 font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55">
+            <span>EPA-validated</span>
+            <span className="hidden md:inline">87 × 22 mm · 32 g</span>
+            <span>30 cycles / charge</span>
             <span className="hidden md:inline">2-year warranty</span>
-            <span>Free shipping over $60</span>
+            <span>Made in Scotland</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Provenance — Designed in the Heart of Scotland */}
+      <section className="relative">
+        <div className="relative h-[68vh] min-h-[460px] w-full overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/photos/rocky-peaks.jpg"
+            alt="The Old Man of Storr, Isle of Skye"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10" />
+          <div className="relative mx-auto flex h-full max-w-[1240px] flex-col justify-end px-8 pb-16 md:pb-20">
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/70">Provenance</div>
+            <h2 className="mt-3 max-w-2xl font-serif text-[40px] leading-[1.05] tracking-tightish text-white md:text-[56px]">
+              Designed in the
+              <br />
+              <span className="italic">Heart of Scotland.</span>
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-[1.65] text-white/80">
+              {BRAND} is engineered and assembled in a workshop above the Firth of Forth — the river it takes its name from, and the first water it ever cleaned.
+            </p>
           </div>
         </div>
       </section>
@@ -102,12 +128,12 @@ export default function HomeA() {
       <section className="mx-auto max-w-[1240px] px-8 py-28">
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-4">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-a-ink/55">The thirty-second story</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">The thirty-second story</div>
             <h2 className="mt-4 font-serif text-[44px] leading-[1] tracking-tightish md:text-[56px]">
               Drop. Shake.<br /> Drink.
             </h2>
             <p className="mt-6 max-w-sm text-[15px] leading-[1.65] text-a-ink/70">
-              Three motions. Sixty seconds. The smallest gesture in your kit, and the only one that turns any bottle into a self-cleaning one.
+              Three motions. Sixty seconds, start to finish. No filters to change, no cartridges to replace, no plastic between you and the water.
             </p>
           </div>
           <ol className="col-span-12 grid grid-cols-1 gap-px bg-a-rule md:col-span-8 md:grid-cols-3">
@@ -126,16 +152,24 @@ export default function HomeA() {
         </div>
       </section>
 
+      {/* Scroll-pinned exploded view */}
+      <ExplodedReveal
+        tone="light"
+        eyebrow="Fig. 04 — Inside the cylinder"
+        title="Six pieces. One sealed instrument."
+        description="Scroll to disassemble. The body resolves into its components — every part engineered to never need replacing."
+      />
+
       {/* Big product hero shot section */}
       <section className="bg-a-ink text-a-bg">
         <div className="mx-auto grid max-w-[1240px] grid-cols-12 gap-8 px-8 py-32">
           <div className="col-span-12 md:col-span-5">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-a-bg/55">A study in restraint</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-bg/55">The object</div>
             <h3 className="mt-6 font-serif text-[40px] leading-[1.05] tracking-tightish md:text-[52px]">
-              The first UV purifier we wanted to leave on the counter.
+              An instrument, not a gadget.
             </h3>
             <p className="mt-6 max-w-md text-[15px] leading-[1.7] text-a-bg/75">
-              Ninety-nine percent of UV pens look like 2008 medical hardware. {BRAND} doesn't. Twin geodesic emitters, an 87 × 22 mm cylinder of recycled aluminum, no buttons, no ports — charged by induction, sealed for life.
+              An 87 × 22 mm cylinder of recycled aluminium, capped at each end by a faceted geodesic emitter. No buttons. No ports. No seams. Charged by induction; sealed for life. Eight components. One sealed instrument.
             </p>
             <dl className="mt-10 grid grid-cols-2 gap-y-5 text-[13px]">
               {[
@@ -154,7 +188,7 @@ export default function HomeA() {
             </dl>
           </div>
           <div className="col-span-12 flex items-center justify-center md:col-span-7">
-            <DeviceVisual
+            <DeviceCylinder
               className="h-[520px] w-auto md:h-[620px]"
               body="#0F1B2D"
               dome="#A9C4D4"
@@ -242,12 +276,12 @@ export default function HomeA() {
             </div>
           </div>
           <div className="col-span-12 md:col-span-7">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-a-ink/55">The technology, briefly</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">The technology, briefly</div>
             <h3 className="mt-4 font-serif text-[40px] leading-tight tracking-tightish">
-              UV-C at 265 nanometres. The wavelength microbial DNA cannot survive.
+              UV-C at 265 nanometres — the wavelength microbial DNA cannot survive.
             </h3>
             <p className="mt-6 max-w-xl text-[15px] leading-[1.7] text-a-ink/70">
-              Twin geodesic emitters refract UV-C at the precise wavelength that breaks down microbial DNA. Multi-directional coverage means there is no shadowed water and no missed surface — independently of bottle shape.
+              Twin geodesic emitters refract dose across every face of the bottle. There is no shadowed water and no missed surface, regardless of bottle shape. Tested against E. coli, rotavirus, and Cryptosporidium. EPA log-reduction methods.
             </p>
             <Link
               href="/technology"
@@ -259,20 +293,56 @@ export default function HomeA() {
         </div>
       </section>
 
-      {/* Use cases — restrained tile grid */}
+      {/* Tested at the source — Waterfall */}
       <section className="mx-auto max-w-[1240px] px-8 pb-28">
-        <div className="text-[12px] uppercase tracking-[0.18em] text-a-ink/55">Where it lives</div>
-        <h3 className="mt-4 max-w-2xl font-serif text-[40px] leading-tight tracking-tightish">
-          Made for travel, but kept on the kitchen counter.
-        </h3>
-        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-a-rule md:grid-cols-5">
-          {USE_CASES.map((u, i) => (
-            <div key={u.tag} className={`bg-a-bg p-6 ${i === 0 ? "md:col-span-1" : ""}`}>
-              <div className="aspect-[4/5] w-full rounded-xl bg-gradient-to-br from-a-sage/30 via-a-sage/10 to-a-bg" />
-              <div className="mt-4 text-[11px] uppercase tracking-[0.16em] text-a-ink/55">{u.tag}</div>
-              <p className="mt-2 font-serif text-[18px] leading-snug">{u.line}</p>
+        <div className="grid grid-cols-12 items-center gap-12">
+          <div className="col-span-12 md:col-span-7">
+            <div className="aspect-[3/2] w-full overflow-hidden rounded-3xl ring-1 ring-a-rule">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/photos/waterfall.jpg"
+                alt="Highland burn — testing site for Forth prototypes"
+                className="h-full w-full object-cover"
+              />
             </div>
-          ))}
+          </div>
+          <div className="col-span-12 md:col-span-5">
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">Tested at the source</div>
+            <h3 className="mt-4 font-serif text-[40px] leading-[1.05] tracking-tightish md:text-[44px]">
+              Cleared against water that's never seen a tap.
+            </h3>
+            <p className="mt-6 max-w-md text-[15px] leading-[1.7] text-a-ink/70">
+              Every prototype is validated in burns, lochs, and the splash pools of the Cuillin. Standard EPA log-reduction protocols, applied to the ten kinds of water our engineers couldn't otherwise drink.
+            </p>
+            <Link
+              href="/technology"
+              className="mt-8 inline-block text-[14px] underline-offset-4 hover:underline"
+            >
+              Read the validation data →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Where it lives — minimal text-only list, no empty placeholders */}
+      <section className="border-y border-a-rule bg-a-bg/40">
+        <div className="mx-auto max-w-[1240px] px-8 py-20">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-12 md:col-span-3">
+              <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">Where it lives</div>
+              <h3 className="mt-4 font-serif text-[32px] leading-tight tracking-tightish md:text-[36px]">
+                Carried, not stored.
+              </h3>
+            </div>
+            <ul className="col-span-12 grid grid-cols-1 gap-y-6 md:col-span-9 md:grid-cols-2 md:gap-x-12">
+              {USE_CASES.map((u) => (
+                <li key={u.tag} className="flex items-baseline gap-4 border-t border-a-rule pt-5">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55 min-w-[64px]">{u.tag}</span>
+                  <p className="font-serif text-[18px] leading-snug text-a-ink/85">{u.line}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -311,12 +381,14 @@ export default function HomeA() {
       <section className="bg-a-ink text-a-bg">
         <div className="mx-auto grid max-w-[1240px] grid-cols-12 gap-8 px-8 py-24">
           <div className="col-span-12 md:col-span-6">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-a-bg/55">Early access</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-bg/55">Early access</div>
             <h3 className="mt-4 font-serif text-[44px] leading-[1.05] tracking-tightish">
-              Be among the first.
+              Pre-orders open
+              <br />
+              <span className="italic text-a-bg/85">this spring.</span>
             </h3>
-            <p className="mt-4 max-w-md text-[15px] leading-[1.65] text-a-bg/75">
-              Pre-orders open in spring. Join the list — no spam, just the launch and the founder's notes from the road.
+            <p className="mt-5 max-w-md text-[15px] leading-[1.65] text-a-bg/75">
+              Leave us your address and we'll write once — when the first batch ships from Edinburgh.
             </p>
           </div>
           <form className="col-span-12 flex items-end gap-3 md:col-span-6">

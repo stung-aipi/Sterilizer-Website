@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { BRAND, SPECS, COMPARE_ROWS, FAQS, USE_CASES, PRESS_QUOTES } from "../lib/brand";
-import { Logomark } from "../components/Logomark";
-import { DeviceVisual } from "../components/DeviceVisual";
+import { HorizontalDeviceMark } from "../components/HorizontalDeviceMark";
+import { DeviceCylinder } from "../components/DeviceCylinder";
 import { VariantToggle } from "../components/VariantToggle";
 import { SiteFooter } from "../components/SiteFooter";
+import { ExplodedReveal } from "../components/ExplodedReveal";
 
 export const metadata = {
-  title: `${BRAND} — B — Engineered`,
+  title: `${BRAND} — UV-C sterilization, engineered in Scotland.`,
+  description: `${BRAND} is an 87 mm submersible UV-C sterilizer. Designed and assembled in Edinburgh.`,
 };
 
 const NAV = [
@@ -23,10 +25,9 @@ export default function HomeB() {
       {/* Header */}
       <header className="sticky top-0 z-30 border-b border-b-line bg-b-bg/80 backdrop-blur">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4">
-          <Link href="/option-b" className="flex items-center gap-2.5">
-            <Logomark className="h-5 w-5 text-b-coral" />
-            <span className="text-[15px] font-medium tracking-tight">{BRAND}</span>
-            <span className="ml-2 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-b-mute md:inline">
+          <Link href="/option-b" className="flex items-center gap-3 text-b-ink" aria-label={BRAND}>
+            <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-b-mute md:inline">
               v1.0 · patent-pending
             </span>
           </Link>
@@ -58,16 +59,16 @@ export default function HomeB() {
             <div className="flex items-center gap-3">
               <span className="h-1.5 w-1.5 rounded-full bg-b-coral" />
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-b-mute">
-                Now indexing — Q3 launch
+                Engineered in Edinburgh — Q3 ship
               </span>
             </div>
             <h1 className="mt-7 text-[64px] font-medium leading-[0.96] tracking-tightx md:text-[104px]">
               Sterilization,<br />
-              <span className="text-b-mute">redesigned at the</span><br />
+              <span className="text-b-mute">at the</span><br />
               <span className="text-b-coral">molecular level.</span>
             </h1>
             <p className="mt-8 max-w-md text-[15.5px] leading-[1.65] text-b-ink/75">
-              {BRAND} is an 87 mm submersible UV-C sterilizer. Twin geodesic emitters refract 265 nm light through every face of any standard bottle. 99.9% reduction. 60 seconds. No filters, no consumables.
+              {BRAND} is an 87 mm submersible UV-C sterilizer. Twin geodesic emitters refract 265 nm light through every face of any bottle. ≥ 3-log reduction. Sixty seconds. No filters, no consumables, no plastic.
             </p>
             <div className="mt-10 flex items-center gap-4">
               <Link
@@ -97,10 +98,11 @@ export default function HomeB() {
             </dl>
           </div>
 
-          {/* Device with technical callouts */}
+          {/* Device — clean, no hero callouts. Part-level labelling lives in
+              the §01.5 assembly diagram (ExplodedReveal) below. */}
           <div className="col-span-12 md:col-span-5">
             <div className="relative mx-auto w-fit">
-              <DeviceVisual
+              <DeviceCylinder
                 className="h-[560px] w-auto md:h-[640px]"
                 body="#13151A"
                 dome="#86A6BC"
@@ -108,34 +110,6 @@ export default function HomeB() {
                 ink="#0A0B0D"
                 glowOn
               />
-              {/* Callouts */}
-              <div className="absolute -left-6 top-[8%] hidden md:block">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-b-coral">01 / dome</span>
-                  <span className="block h-px w-16 bg-b-coral/60" />
-                </div>
-                <div className="mt-1 max-w-[200px] text-[11.5px] leading-snug text-b-ink/75">
-                  Geodesic refractor — 12 facets, optical-grade PETG.
-                </div>
-              </div>
-              <div className="absolute -right-6 top-[42%] hidden md:block text-right">
-                <div className="flex items-center justify-end gap-2">
-                  <span className="block h-px w-16 bg-b-coral/60" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-b-coral">02 / body</span>
-                </div>
-                <div className="mt-1 max-w-[200px] text-[11.5px] leading-snug text-b-ink/75">
-                  Recycled aluminum unibody. IPX8. Zero ports, zero seams.
-                </div>
-              </div>
-              <div className="absolute -left-6 bottom-[8%] hidden md:block">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-b-coral">03 / charge</span>
-                  <span className="block h-px w-16 bg-b-coral/60" />
-                </div>
-                <div className="mt-1 max-w-[200px] text-[11.5px] leading-snug text-b-ink/75">
-                  Magnetic induction. 2 hour charge. 30 cycles.
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -164,7 +138,7 @@ export default function HomeB() {
                 <span className="text-b-mute">Sixty seconds.</span>
               </h2>
               <p className="mt-6 max-w-sm text-[14.5px] leading-[1.7] text-b-ink/70">
-                Designed so a child can use it. Built so a chemist would trust it.
+                A motion handshake initiates the cycle. There is no power button, no port, no setup screen. The mechanism is the gesture.
               </p>
             </div>
             <ol className="col-span-12 grid gap-px bg-b-line md:col-span-8 md:grid-cols-3">
@@ -184,6 +158,14 @@ export default function HomeB() {
           </div>
         </div>
       </section>
+
+      {/* Scroll-pinned exploded view */}
+      <ExplodedReveal
+        tone="dark"
+        eyebrow="§ 01.5 — assembly diagram"
+        title="Six components. Sealed for life."
+        description="Scroll to disassemble. The aluminum unibody resolves into its parts — twin emitters, driver PCB, induction-charged battery."
+      />
 
       {/* Technology hero */}
       <section className="relative overflow-hidden border-b border-b-line">
@@ -250,6 +232,45 @@ export default function HomeB() {
         </div>
       </section>
 
+      {/* Provenance — Designed in Scotland */}
+      <section className="relative border-b border-b-line">
+        <div className="relative h-[68vh] min-h-[460px] w-full overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/photos/rocky-peaks.jpg"
+            alt="The Old Man of Storr, Isle of Skye — first prototype field site"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-b-bg via-b-bg/40 to-b-bg/20" />
+          <div className="bg-grid-faint absolute inset-0 opacity-50" aria-hidden />
+          <div className="relative mx-auto flex h-full max-w-[1280px] flex-col justify-end px-6 pb-16 md:pb-20">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-b-coral">§ 02.5 — provenance</div>
+            <h3 className="mt-4 max-w-3xl text-[44px] font-medium leading-[1.02] tracking-tightx md:text-[64px]">
+              Designed in the
+              <br />
+              <span className="text-b-mute italic">Heart of Scotland.</span>
+            </h3>
+            <p className="mt-5 max-w-lg text-[14.5px] leading-[1.65] text-b-ink/80">
+              Engineered and assembled in a workshop above the Firth of Forth. Prototype no. 003 was tested at the foot of the Storr — the first water it ever cleaned came out of a Highland burn.
+            </p>
+            <dl className="mt-10 grid max-w-xl grid-cols-3 gap-6 border-t border-b-line pt-6 font-mono text-[11px] uppercase tracking-[0.16em]">
+              <div>
+                <dt className="text-b-mute">Workshop</dt>
+                <dd className="mt-1 text-b-ink">Edinburgh, UK</dd>
+              </div>
+              <div>
+                <dt className="text-b-mute">Validation</dt>
+                <dd className="mt-1 text-b-ink">EPA · NSF/ANSI 55</dd>
+              </div>
+              <div>
+                <dt className="text-b-mute">Field site</dt>
+                <dd className="mt-1 text-b-ink">Isle of Skye</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
       {/* Comparison — spec sheet */}
       <section className="border-b border-b-line">
         <div className="mx-auto max-w-[1280px] px-6 py-28">
@@ -292,33 +313,46 @@ export default function HomeB() {
         </div>
       </section>
 
-      {/* Use cases — bento dark cards */}
+      {/* Field use — Waterfall photo + use case list */}
       <section className="border-b border-b-line">
         <div className="mx-auto max-w-[1280px] px-6 py-28">
-          <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-b-mute">§ 04 — field use</div>
-          <h3 className="mt-4 max-w-2xl text-[44px] font-medium leading-tight tracking-tightx">
-            Built for everywhere a bottle goes.
-          </h3>
-
-          <div className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-3">
-            {USE_CASES.slice(0, 3).map((u, i) => (
-              <div
-                key={u.tag}
-                className={`relative overflow-hidden rounded-3xl bg-b-surface ring-1 ring-b-line ${
-                  i === 0 ? "md:col-span-2 md:row-span-2" : ""
-                } ${i === 0 ? "min-h-[420px]" : "min-h-[200px]"}`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-b-coral/12 via-transparent to-b-coral/0" />
-                <div className="relative flex h-full flex-col justify-between p-7">
-                  <div className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-b-coral">
-                    0{i + 1} · {u.tag}
-                  </div>
-                  <p className={`max-w-md ${i === 0 ? "text-[28px]" : "text-[18px]"} font-medium leading-tight tracking-tightish`}>
-                    {u.line}
-                  </p>
-                </div>
+          <div className="grid grid-cols-12 gap-10">
+            <div className="col-span-12 md:col-span-7">
+              <div className="aspect-[3/2] w-full overflow-hidden rounded-3xl ring-1 ring-b-line">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/photos/waterfall.jpg"
+                  alt="Highland burn — log-reduction validation site"
+                  className="h-full w-full object-cover"
+                />
               </div>
-            ))}
+              <div className="mt-3 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.22em] text-b-mute">
+                <span className="block h-px w-6 bg-b-coral/60" />
+                <span>fig. 04 · field validation site, Wester Ross</span>
+              </div>
+            </div>
+            <div className="col-span-12 md:col-span-5">
+              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-b-mute">§ 04 — field use</div>
+              <h3 className="mt-4 text-[40px] font-medium leading-[1.02] tracking-tightx md:text-[48px]">
+                Built for everywhere a bottle goes.
+              </h3>
+              <p className="mt-6 max-w-md text-[14.5px] leading-[1.7] text-b-ink/75">
+                Validated against the ten kinds of water our engineers couldn't otherwise drink. From hotel taps to glacial runoff — same cycle, same dose, same sixty seconds.
+              </p>
+              <ul className="mt-10 divide-y divide-b-line border-y border-b-line">
+                {USE_CASES.map((u, i) => (
+                  <li key={u.tag} className="flex items-baseline gap-4 py-4">
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-b-coral min-w-[28px]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-b-mute min-w-[80px]">
+                      {u.tag}
+                    </span>
+                    <p className="text-[14px] leading-snug text-b-ink/85">{u.line}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -376,10 +410,12 @@ export default function HomeB() {
           <div className="col-span-12 md:col-span-6">
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-b-coral">// early access</div>
             <h3 className="mt-4 text-[48px] font-medium leading-[1.02] tracking-tightx">
-              Get the launch brief.
+              First batch ships
+              <br />
+              <span className="text-b-mute">from Edinburgh.</span>
             </h3>
             <p className="mt-4 max-w-md text-[15px] leading-[1.65] text-b-ink/70">
-              Engineering notes, validation data, and first access to pre-orders. One email a month.
+              Validation data, engineering notes, and pre-order access — one email when units leave the workshop.
             </p>
           </div>
           <form className="col-span-12 flex items-end gap-3 md:col-span-6">

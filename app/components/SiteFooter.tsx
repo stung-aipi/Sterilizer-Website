@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BRAND } from "../lib/brand";
-import { Logomark } from "./Logomark";
+import { HorizontalDeviceMark } from "./HorizontalDeviceMark";
 
 const COLS: { title: string; items: { href: string; label: string }[] }[] = [
   {
@@ -53,9 +53,8 @@ export function SiteFooter({ tone = "light" }: { tone?: "light" | "dark" }) {
       <div className="mx-auto max-w-[1240px] px-6 py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
-            <div className="flex items-center gap-2">
-              <Logomark className="h-5 w-5" />
-              <span className="text-[15px] font-medium tracking-tight">{BRAND}</span>
+            <div className="flex items-center" aria-label={BRAND}>
+              <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
             </div>
             <p className={`mt-4 max-w-sm text-[13.5px] leading-relaxed ${isDark ? "text-b-mute" : "text-neutral-600"}`}>
               A submersible UV-C water sterilizer. Drops into any bottle and disinfects in 60 seconds. Patent-pending technology, designed in the UK.

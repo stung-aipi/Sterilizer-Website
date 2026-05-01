@@ -9,6 +9,7 @@ const config: Config = {
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
         display: ["var(--font-grotesk)", "Inter", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        urbanist: ["var(--font-urbanist)", "Inter", "sans-serif"],
       },
       colors: {
         // Variant A — Editorial

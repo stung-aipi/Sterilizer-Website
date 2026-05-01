@@ -1,18 +1,23 @@
-# Lumen — Sterilizer Marketing Site (Concept Build)
+# Forth — Sterilizer Marketing Site (Concept Build)
 
-Three home page concepts for the submersible UV-C sterilizer brand, with a switcher and dummy data on the rest of the pages. Built on Next.js 14 + Tailwind. Deploys to Vercel in one click.
+Two home page concepts for the submersible UV-C sterilizer brand, with a switcher and dummy data on the rest of the pages. Built on Next.js 14 + Tailwind. Deploys to Vercel in one click.
 
-The brand name `Lumen` is a placeholder. Change it in one place: [`app/lib/brand.ts`](app/lib/brand.ts).
+The brand name `Forth` is the working candidate. Change it in one place: [`app/lib/brand.ts`](app/lib/brand.ts).
 
-## The three concepts
+## The two concepts
 
 | Concept | URL | Direction | Notes |
 | --- | --- | --- | --- |
 | **A — Editorial** | `/` | Aesop / restraint | Off-white, Fraunces serif display, sage accent, generous whitespace. Premium without luxury. |
 | **B — Engineered** | `/option-b` | Oura / Eight Sleep | Near-black, Space Grotesk + JetBrains Mono spec callouts, soft coral glow, technical leader-line annotations. |
-| **C — Bright Modern** | `/option-c` | Owala / Allbirds | Warm off-white + sunbeam yellow + clay, bento-style hero, more product energy and density. |
 
-A pill at the bottom-center of each homepage flips between A / B / C.
+A pill at the bottom-center of each homepage flips between A and B.
+
+The third concept (Bright Modern / Owala-style) was ruled out and removed.
+
+## The locked logo
+
+Logo direction is set to **Concept 4 — horizontal device with the wordmark inside the body** (PRD §5.4 add-on). The geodesic dome ends are rendered as concentric triangulated rings to match the actual product's faceting. The Identity Lab still exposes Concepts 1, 2, and 3 for comparison.
 
 All three include every section from PRD §8.1: hero, 30-second story, product hero shot, why-it's-different, social proof, technology in 60s, use cases, FAQ, email capture, footer.
 

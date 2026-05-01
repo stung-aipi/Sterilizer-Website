@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BRAND } from "../lib/brand";
-import { Logomark } from "./Logomark";
+import { HorizontalDeviceMark } from "./HorizontalDeviceMark";
 
 const NAV = [
   { href: "/shop", label: "Shop" },
@@ -20,9 +20,8 @@ export function SiteNav({ tone = "light" }: { tone?: "light" | "dark" }) {
       } backdrop-blur`}
     >
       <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <Logomark className="h-5 w-5" />
-          <span className="text-[15px] font-medium tracking-tight">{BRAND}</span>
+        <Link href="/" className="flex items-center" aria-label={BRAND}>
+          <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
           {NAV.map((n) => (

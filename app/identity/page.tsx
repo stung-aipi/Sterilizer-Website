@@ -2,46 +2,71 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Logomark } from "../components/Logomark";
-import { CylinderMono } from "../components/CylinderMono";
 import { DeviceVisual } from "../components/DeviceVisual";
-import { HorizontalDeviceMark } from "../components/HorizontalDeviceMark";
+import {
+  HorizontalDeviceMark,
+  LOGO_VARIANTS,
+  type LogoVariant,
+} from "../components/HorizontalDeviceMark";
+import {
+  FaviconMark,
+  FAVICON_VARIANTS,
+  type FaviconVariant,
+} from "../components/FaviconMark";
 
-// Names are sourced directly from PRD §5.3.
-// Direction A and B are recommended for shortlisting; C only if heritage
-// becomes a core brand pillar.
-const DIRECTIONS = [
-  {
-    id: "A",
-    label: "Elemental / scientific",
-    note: "Recommended. Credibility, ownability, trademark potential.",
-    names: ["Lume", "Solen", "Aurex", "Nivar", "Quanta", "Ionis"],
-  },
-  {
-    id: "B",
-    label: "Action / experiential",
-    note: "Recommended. Memorable, brandable; trademark difficulty for short common words.",
-    names: ["Drop", "Shake", "Swirl", "Plunge", "Dip"],
-  },
-  {
-    id: "C",
-    label: "Geographic / heritage",
-    note: "Avoid unless committing to heritage as a core pillar (PRD §5.3).",
-    names: ["Tay", "Forth", "Cairn", "Glen"],
-  },
-] as const;
+// Names — Direction C only (Scottish geographic / heritage). The original
+// four PRD candidates plus six more appended at the user's request.
+const C_NAMES = [
+  "Tay", "Forth", "Cairn", "Glen",
+  "Skye", "Iona", "Nevis", "Brae", "Strath", "Kelvin",
+];
 
+// Each typeface entry carries the className for the picker preview, plus
+// the SVG-side font-family stack and font-weight so the lockup renders
+// in exactly the same face the user sees in the picker row.
 const TYPEFACES = [
-  { id: "serif", label: "Editorial serif (Fraunces)", className: "font-serif" },
-  { id: "sans", label: "Modern sans (Inter)", className: "font-sans font-medium" },
-  { id: "display", label: "Display sans (Space Grotesk)", className: "font-display font-medium" },
-] as const;
-
-const CONCEPTS = [
-  { id: "1", label: "Mark + wordmark", sub: "Geometric symbol referencing the geodesic dome." },
-  { id: "2", label: "Wordmark only", sub: "Custom wordmark with a single distinctive letterform detail." },
-  { id: "3", label: "Monogram + wordmark", sub: "Letter monogram in the device's cylindrical silhouette." },
-  { id: "4", label: "Horizontal device", sub: "Flat side view of the device with the name set inside its body." },
+  {
+    id: "serif",
+    label: "Editorial serif (Fraunces)",
+    className: "font-serif",
+    family: "var(--font-fraunces), Georgia, serif",
+    weight: 500,
+  },
+  {
+    id: "sans",
+    label: "Modern sans (Inter)",
+    className: "font-sans font-medium",
+    family: "var(--font-inter), system-ui, sans-serif",
+    weight: 600,
+  },
+  {
+    id: "display",
+    label: "Display sans (Space Grotesk)",
+    className: "font-display font-medium",
+    family: "var(--font-grotesk), Inter, sans-serif",
+    weight: 600,
+  },
+  {
+    id: "urbanist-thin",
+    label: "Urbanist Thin",
+    className: "font-urbanist font-thin",
+    family: "var(--font-urbanist), Inter, sans-serif",
+    weight: 100,
+  },
+  {
+    id: "urbanist-regular",
+    label: "Urbanist Regular",
+    className: "font-urbanist",
+    family: "var(--font-urbanist), Inter, sans-serif",
+    weight: 400,
+  },
+  {
+    id: "urbanist-medium",
+    label: "Urbanist Medium",
+    className: "font-urbanist font-medium",
+    family: "var(--font-urbanist), Inter, sans-serif",
+    weight: 500,
+  },
 ] as const;
 
 const PALETTES = [
@@ -52,91 +77,17 @@ const PALETTES = [
   { id: "sun", label: "Sunbeam", bg: "#F4D35E", ink: "#1A2332", muted: "#1A233290" },
 ] as const;
 
-type ConceptId = (typeof CONCEPTS)[number]["id"];
 type FontId = (typeof TYPEFACES)[number]["id"];
 type PaletteId = (typeof PALETTES)[number]["id"];
 
-// ---- Lockup primitives ----
-
-function Lockup({
-  name,
-  concept,
-  font,
-  color,
-  size = "md",
-}: {
-  name: string;
-  concept: ConceptId;
-  font: FontId;
-  color: string;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
-}) {
-  const fontClass = TYPEFACES.find((t) => t.id === font)?.className ?? "font-sans";
-
-  // Per-size scale tokens
-  const t = {
-    xs: { text: "text-[15px]", mark: "h-3.5 w-3.5", mono: "h-4 w-[10px]", horiz: "h-5", gap: "gap-1.5", track: "tracking-tight" },
-    sm: { text: "text-[20px]", mark: "h-5 w-5", mono: "h-6 w-4", horiz: "h-7", gap: "gap-2", track: "tracking-tight" },
-    md: { text: "text-[34px]", mark: "h-7 w-7", mono: "h-9 w-6", horiz: "h-12", gap: "gap-3", track: "tracking-tight" },
-    lg: { text: "text-[64px]", mark: "h-12 w-12", mono: "h-16 w-11", horiz: "h-20", gap: "gap-5", track: "tracking-tight" },
-    xl: { text: "text-[120px]", mark: "h-24 w-24", mono: "h-32 w-[88px]", horiz: "h-40", gap: "gap-8", track: "tracking-tightx" },
-  }[size];
-
-  if (concept === "1") {
-    return (
-      <div className={`flex items-center ${t.gap}`} style={{ color }}>
-        <Logomark className={t.mark} color={color} />
-        <span className={`${fontClass} ${t.text} ${t.track}`}>{name}</span>
-      </div>
-    );
-  }
-
-  if (concept === "2") {
-    // The "single distinctive letterform detail" per PRD §5.4 — last letter
-    // rendered with a contrasting style (italic for serif/sans, low-case for display).
-    const head = name.slice(0, -1);
-    const tail = name.slice(-1);
-    const detail = font === "display" ? "lowercase" : "italic";
-    return (
-      <span className={`${fontClass} ${t.text} ${t.track}`} style={{ color }}>
-        {head}
-        <span className={detail === "italic" ? "italic" : "lowercase"}>{tail}</span>
-      </span>
-    );
-  }
-
-  if (concept === "3") {
-    return (
-      <div className={`flex items-center ${t.gap}`} style={{ color }}>
-        <CylinderMono letter={name[0] ?? ""} color={color} className={t.mono} />
-        <span className={`${fontClass} ${t.text} ${t.track}`}>{name}</span>
-      </div>
-    );
-  }
-
-  // concept 4 — horizontal device silhouette with the name set inside the body
-  // Pull the actual loaded font family off the CSS variable that next/font wired up
-  // so the SVG <text> renders in the same face as the rest of the lockups.
-  const fontVar =
-    font === "serif" ? "var(--font-fraunces), Georgia, serif"
-    : font === "display" ? "var(--font-grotesk), Inter, sans-serif"
-    : "var(--font-inter), system-ui, sans-serif";
-  return (
-    <HorizontalDeviceMark
-      name={name || "—"}
-      color={color}
-      fontFamily={fontVar}
-      fontWeight={font === "serif" ? 500 : 600}
-      className={t.horiz}
-    />
-  );
-}
+const tfFor = (id: FontId) => TYPEFACES.find((t) => t.id === id) ?? TYPEFACES[0];
 
 // ---- Page ----
 
 export default function IdentityLab() {
-  const [name, setName] = useState("Lumen");
-  const [concept, setConcept] = useState<ConceptId>("1");
+  const [name, setName] = useState("Forth");
+  const [logo, setLogo] = useState<LogoVariant>("blocky");
+  const [favicon, setFavicon] = useState<FaviconVariant>("geodesic");
   const [font, setFont] = useState<FontId>("serif");
   const [paletteId, setPaletteId] = useState<PaletteId>("paper");
   const [customMode, setCustomMode] = useState(false);
@@ -146,7 +97,8 @@ export default function IdentityLab() {
     [paletteId],
   );
 
-  // The device illustration body color shifts with palette so the deboss reads.
+  // Body color of the deboss preview shifts with the palette so the wordmark
+  // etched on the cylinder remains legible.
   const deviceColors = useMemo(() => {
     if (paletteId === "ink") return { body: "#13151A", dome: "#86A6BC", ink: "#0A0B0D", glow: "#E89B7C" };
     if (paletteId === "sage") return { body: "#1F2A28", dome: "#C5D4C0", ink: "#0F1B2D", glow: "#A6C7B6" };
@@ -154,6 +106,20 @@ export default function IdentityLab() {
     if (paletteId === "sun") return { body: "#1F2A36", dome: "#FFE6A1", ink: "#1A2332", glow: "#F4D35E" };
     return { body: "#1A2433", dome: "#C8D4DC", ink: "#0F1B2D", glow: "#7FB3FF" };
   }, [paletteId]);
+
+  const renderLockup = (color: string, heightClass: string) => {
+    const tf = tfFor(font);
+    return (
+      <HorizontalDeviceMark
+        name={name || "—"}
+        variant={logo}
+        color={color}
+        fontFamily={tf.family}
+        fontWeight={tf.weight}
+        className={heightClass}
+      />
+    );
+  };
 
   return (
     <div className="min-h-screen bg-neutral-100 text-neutral-900">
@@ -175,11 +141,11 @@ export default function IdentityLab() {
             </div>
           </div>
           <div className="flex items-center gap-2 text-[12px] text-neutral-500">
-            <span>{name || "—"}</span>
+            <span className="font-medium text-neutral-900">{name || "—"}</span>
             <span className="text-neutral-300">·</span>
-            <span>Concept {concept}</span>
+            <span className="capitalize">{logo}</span>
             <span className="text-neutral-300">·</span>
-            <span className="capitalize">{font}</span>
+            <span className="capitalize">{favicon}</span>
           </div>
         </div>
       </header>
@@ -188,7 +154,7 @@ export default function IdentityLab() {
         {/* Controls */}
         <aside className="col-span-12 md:col-span-4 lg:col-span-3">
           <div className="md:sticky md:top-20 space-y-6">
-            {/* Name */}
+            {/* Name — Direction C only */}
             <section className="rounded-2xl bg-white p-5 ring-1 ring-black/5">
               <div className="flex items-center justify-between">
                 <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
@@ -210,68 +176,115 @@ export default function IdentityLab() {
                   className="mt-3 w-full rounded-xl border border-black/10 bg-white px-3 py-2.5 text-[15px] outline-none focus:border-neutral-900"
                 />
               ) : (
-                <div className="mt-3 space-y-4">
-                  {DIRECTIONS.map((d) => (
-                    <div key={d.id}>
-                      <div className="flex items-baseline justify-between">
-                        <div className="text-[12px] font-medium">Dir. {d.id} — {d.label}</div>
-                      </div>
-                      <p className="mt-1 text-[11.5px] leading-snug text-neutral-500">{d.note}</p>
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {d.names.map((n) => {
-                          const active = name === n;
-                          return (
-                            <button
-                              key={n}
-                              onClick={() => setName(n)}
-                              className={`rounded-full px-2.5 py-1 text-[12.5px] tracking-tight transition ${
-                                active
-                                  ? "bg-neutral-900 text-white"
-                                  : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
-                              }`}
-                            >
-                              {n}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
+                <div className="mt-3">
+                  <div className="text-[12px] font-medium">Scottish geographic / heritage</div>
+                  <p className="mt-1 text-[11.5px] leading-snug text-neutral-500">
+                    River, isle, valley, and place names. Forth is the leading candidate.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {C_NAMES.map((n) => {
+                      const active = name === n;
+                      return (
+                        <button
+                          key={n}
+                          onClick={() => setName(n)}
+                          className={`rounded-full px-2.5 py-1 text-[12.5px] tracking-tight transition ${
+                            active
+                              ? "bg-neutral-900 text-white"
+                              : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
+                          }`}
+                        >
+                          {n}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </section>
 
-            {/* Logo concept */}
+            {/* Logo variant — five variations of the locked horizontal device */}
             <section className="rounded-2xl bg-white p-5 ring-1 ring-black/5">
               <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
-                Logo concept
+                Logo variant
               </h2>
-              <div className="mt-3 space-y-2">
-                {CONCEPTS.map((c) => {
-                  const active = concept === c.id;
+              <p className="mt-2 text-[11.5px] leading-snug text-neutral-500">
+                All five share the locked horizontal-device structure. Only the dome surface differs.
+              </p>
+              <div className="mt-3 space-y-1.5">
+                {LOGO_VARIANTS.map((v) => {
+                  const active = logo === v.id;
                   return (
                     <button
-                      key={c.id}
-                      onClick={() => setConcept(c.id as ConceptId)}
-                      className={`w-full rounded-xl border p-3 text-left transition ${
+                      key={v.id}
+                      onClick={() => setLogo(v.id)}
+                      className={`flex w-full items-center gap-3 rounded-xl border p-2 text-left transition ${
                         active
-                          ? "border-neutral-900 bg-neutral-900 text-white"
+                          ? "border-neutral-900 bg-neutral-50"
                           : "border-black/10 bg-white hover:border-neutral-300"
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[13px] font-medium">Concept {c.id} — {c.label}</span>
-                      </div>
-                      <p className={`mt-1 text-[11.5px] leading-snug ${active ? "text-white/70" : "text-neutral-500"}`}>
-                        {c.sub}
-                      </p>
+                      <span className="grid h-10 w-[118px] shrink-0 place-items-center overflow-hidden rounded-md bg-white ring-1 ring-black/5">
+                        <HorizontalDeviceMark
+                          name={name || "—"}
+                          variant={v.id}
+                          color="#0F1B2D"
+                          className="h-7 w-auto"
+                        />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[12.5px] font-medium leading-tight">{v.label}</span>
+                        <span className="mt-0.5 block text-[11px] leading-snug text-neutral-500">
+                          {v.sub}
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
               </div>
             </section>
 
-            {/* Typeface */}
+            {/* Favicon — six dome / crystalline marks */}
+            <section className="rounded-2xl bg-white p-5 ring-1 ring-black/5">
+              <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
+                Favicon mark
+              </h2>
+              <p className="mt-2 text-[11.5px] leading-snug text-neutral-500">
+                The horizontal lockup crushes at 16 px. These are the small-format alternates — every
+                one is a dome or crystalline form.
+              </p>
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                {FAVICON_VARIANTS.map((f) => {
+                  const active = favicon === f.id;
+                  return (
+                    <button
+                      key={f.id}
+                      onClick={() => setFavicon(f.id)}
+                      title={f.sub}
+                      className={`group flex flex-col items-center gap-1.5 rounded-lg p-2 transition ${
+                        active ? "bg-neutral-900 text-white" : "hover:bg-neutral-50"
+                      }`}
+                    >
+                      <span
+                        className={`grid h-12 w-12 place-items-center rounded-md ring-1 ${
+                          active ? "bg-white ring-white/30" : "bg-white ring-black/5"
+                        }`}
+                      >
+                        <FaviconMark
+                          variant={f.id}
+                          letter={name[0] ?? "F"}
+                          color="#0F1B2D"
+                          className="h-7 w-7"
+                        />
+                      </span>
+                      <span className="text-[10.5px] tracking-tight">{f.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* Wordmark typeface */}
             <section className="rounded-2xl bg-white p-5 ring-1 ring-black/5">
               <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
                 Wordmark typeface
@@ -295,7 +308,7 @@ export default function IdentityLab() {
               </div>
             </section>
 
-            {/* Palette */}
+            {/* Background palette */}
             <section className="rounded-2xl bg-white p-5 ring-1 ring-black/5">
               <h2 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
                 Background
@@ -324,8 +337,8 @@ export default function IdentityLab() {
             </section>
 
             <p className="text-[11.5px] leading-snug text-neutral-500">
-              Per PRD §5.4, the logo must work at favicon, debossed-on-device, and large packaging sizes
-              — and in single colour. All four contexts are previewed on the right.
+              Per PRD §5.4 the logo must work at favicon, debossed-on-device, and large packaging
+              sizes — and in single colour. Every context is previewed on the right.
             </p>
           </div>
         </aside>
@@ -338,14 +351,14 @@ export default function IdentityLab() {
             style={{ backgroundColor: palette.bg }}
           >
             <div className="flex min-h-[420px] items-center justify-center px-8 py-20">
-              <Lockup name={name || "—"} concept={concept} font={font} color={palette.ink} size="xl" />
+              {renderLockup(palette.ink, "h-40 w-auto")}
             </div>
             <div
               className="flex items-center justify-between border-t px-6 py-3 text-[11px] uppercase tracking-[0.18em]"
               style={{ borderColor: palette.muted, color: palette.muted }}
             >
               <span>Primary lockup · {palette.label}</span>
-              <span>Concept {concept} / {font}</span>
+              <span>{logo} / {font}</span>
             </div>
           </section>
 
@@ -360,11 +373,11 @@ export default function IdentityLab() {
                 className="flex items-center justify-between px-5 py-4"
                 style={{ backgroundColor: palette.bg }}
               >
-                <Lockup name={name || "—"} concept={concept} font={font} color={palette.ink} size="sm" />
+                {renderLockup(palette.ink, "h-7 w-auto")}
                 <div className="flex items-center gap-5 text-[11.5px]" style={{ color: palette.ink, opacity: 0.7 }}>
-                  <span>Shop</span>
-                  <span>How It Works</span>
-                  <span>About</span>
+                  <span className="hidden sm:inline">Shop</span>
+                  <span className="hidden md:inline">How It Works</span>
+                  <span className="hidden sm:inline">About</span>
                   <span
                     className="rounded-full px-3 py-1 text-[11px]"
                     style={{ backgroundColor: palette.ink, color: palette.bg }}
@@ -374,14 +387,15 @@ export default function IdentityLab() {
                 </div>
               </div>
               <div className="border-t border-black/5 p-3 text-[12px] text-neutral-500">
-                Reads at 20 px nav scale on desktop.
+                Reads at 28 px tall in the nav.
               </div>
             </div>
 
-            {/* Favicon / app icon */}
+            {/* Favicon / app icon — uses the selected favicon variant */}
             <div className="rounded-3xl bg-white ring-1 ring-black/5">
-              <div className="border-b border-black/5 p-3 font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
-                App icon · Favicon · 64 / 32 / 16 px
+              <div className="flex items-center justify-between border-b border-black/5 p-3 font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
+                <span>App icon · 64 / 32 / 16 px</span>
+                <span className="text-neutral-700">{favicon}</span>
               </div>
               <div className="flex items-end gap-6 p-8">
                 {[64, 32, 16].map((s) => (
@@ -390,35 +404,12 @@ export default function IdentityLab() {
                       className="grid place-items-center rounded-[18%] ring-1 ring-black/10"
                       style={{ backgroundColor: palette.bg, width: s * 1.6, height: s * 1.6 }}
                     >
-                      {concept === "1" && <Logomark color={palette.ink} className="h-[55%] w-[55%]" />}
-                      {concept === "2" && (
-                        <span
-                          className={`${TYPEFACES.find((t) => t.id === font)?.className ?? "font-sans"} font-semibold`}
-                          style={{ color: palette.ink, fontSize: s * 0.7 }}
-                        >
-                          {(name || "—")[0]}
-                        </span>
-                      )}
-                      {concept === "3" && <CylinderMono letter={name[0] ?? "—"} color={palette.ink} className="h-[70%] w-[44%]" />}
-                      {concept === "4" && (
-                        // The full horizontal mark crushes at favicon scale, so we
-                        // show the horizontal capsule holding just the initial letter.
-                        // Same family of forms, legible at 16 px.
-                        <svg viewBox="0 0 36 20" className="h-[44%] w-[70%]" aria-hidden>
-                          <rect x="1" y="1" width="34" height="18" rx="9" fill="none" stroke={palette.ink} strokeWidth="1.6" />
-                          <text
-                            x="18"
-                            y="14.5"
-                            textAnchor="middle"
-                            fontFamily="ui-sans-serif, system-ui, sans-serif"
-                            fontSize="11"
-                            fontWeight="600"
-                            fill={palette.ink}
-                          >
-                            {(name[0] ?? "—").toUpperCase()}
-                          </text>
-                        </svg>
-                      )}
+                      <FaviconMark
+                        variant={favicon}
+                        letter={name[0] ?? "F"}
+                        color={palette.ink}
+                        className="h-[60%] w-[60%]"
+                      />
                     </div>
                     <span className="font-mono text-[10px] text-neutral-500">{s}px</span>
                   </div>
@@ -433,10 +424,24 @@ export default function IdentityLab() {
               </div>
               <div className="grid grid-cols-2">
                 <div className="flex items-center justify-center bg-white p-10">
-                  <Lockup name={name || "—"} concept={concept} font={font} color="#0A0B0D" size="md" />
+                  <HorizontalDeviceMark
+                    name={name || "—"}
+                    variant={logo}
+                    color="#0A0B0D"
+                    fontFamily={tfFor(font).family}
+                    fontWeight={tfFor(font).weight}
+                    className="h-12 w-auto"
+                  />
                 </div>
                 <div className="flex items-center justify-center bg-neutral-900 p-10">
-                  <Lockup name={name || "—"} concept={concept} font={font} color="#F5F2EC" size="md" />
+                  <HorizontalDeviceMark
+                    name={name || "—"}
+                    variant={logo}
+                    color="#F5F2EC"
+                    fontFamily={tfFor(font).family}
+                    fontWeight={tfFor(font).weight}
+                    className="h-12 w-auto"
+                  />
                 </div>
               </div>
               <div className="border-t border-black/5 p-3 text-[12px] text-neutral-500">
@@ -468,17 +473,26 @@ export default function IdentityLab() {
             </div>
           </section>
 
-          {/* Business-card / collateral hint */}
+          {/* Stationery card */}
           <section className="rounded-3xl bg-white ring-1 ring-black/5">
             <div className="border-b border-black/5 p-3 font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
               Stationery · 85 × 55 mm
             </div>
             <div className="flex items-center justify-center p-10">
               <div
-                className="grid h-[280px] w-[420px] grid-rows-[1fr_auto] rounded-md p-6 shadow-xl ring-1 ring-black/10"
+                className="grid h-[280px] w-[420px] grid-rows-[auto_1fr_auto] gap-4 rounded-md p-6 shadow-xl ring-1 ring-black/10"
                 style={{ backgroundColor: palette.bg, color: palette.ink }}
               >
-                <Lockup name={name || "—"} concept={concept} font={font} color={palette.ink} size="md" />
+                <div className="flex items-start justify-between">
+                  {renderLockup(palette.ink, "h-9 w-auto")}
+                  <FaviconMark
+                    variant={favicon}
+                    letter={name[0] ?? "F"}
+                    color={palette.ink}
+                    className="h-7 w-7 opacity-80"
+                  />
+                </div>
+                <div />
                 <div className="flex items-end justify-between text-[11.5px]" style={{ color: palette.muted }}>
                   <div>
                     <div className="font-medium" style={{ color: palette.ink }}>Nicolas Luvisutto</div>
@@ -496,13 +510,27 @@ export default function IdentityLab() {
           {/* Notes */}
           <section className="rounded-3xl bg-white p-6 ring-1 ring-black/5 text-[13.5px] leading-relaxed text-neutral-700">
             <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-500">
-              Notes from the PRD
+              Working notes
             </div>
             <ul className="mt-3 list-disc space-y-1.5 pl-5">
-              <li><strong>Concepts to develop in parallel:</strong> 1 (geometric mark) and 3 (monogram + wordmark) per PRD §5.4. Concept 2 (wordmark only) only if naming lands on a particularly distinctive word. Concept 4 (horizontal device) is product-specific — strong for packaging and the device itself, weaker as a standalone brand mark and less flexible at favicon sizes.</li>
-              <li><strong>Type guidance:</strong> editorial serif (Tiempos/Fraunces) or confident geometric/contemporary serif. Avoid rounded friendly sans (Nunito, Quicksand) and Helvetica/Roboto defaults.</li>
-              <li><strong>Direction C names</strong> are unlikely to travel to the US market — only proceed if heritage becomes a core brand pillar.</li>
-              <li><strong>Sweep before commit:</strong> domain & USPTO/UKIPO check on shortlist before any logo finalization.</li>
+              <li>
+                <strong>Heritage commitment:</strong> picking from Direction C means the brand story has
+                to lean into Scottish heritage credibly — origin in Edinburgh, founder bio, materials
+                story, packaging copy. Otherwise the name reads as decorative.
+              </li>
+              <li>
+                <strong>Logo variants are a single family.</strong> The capsule + body + name structure
+                is locked. Pick the variant that survives best at small sizes and prints cleanest.
+              </li>
+              <li>
+                <strong>Favicon set is independent</strong> from the logo because the horizontal
+                lockup is illegible at 16 px. The favicon should still feel like the same brand —
+                every option here is a dome or crystalline form.
+              </li>
+              <li>
+                <strong>Sweep before commit:</strong> domain &amp; USPTO/UKIPO check on the shortlisted
+                names; trademark availability is the single biggest constraint.
+              </li>
             </ul>
           </section>
         </main>

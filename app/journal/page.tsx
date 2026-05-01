@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { PageShell, Eyebrow, H1, Lead } from "../components/PageShell";
 
-export const metadata = { title: "Journal — Lumen" };
+export const metadata = { title: "Journal — Forth" };
 
 const POSTS = [
   { slug: "uv-c-explained", title: "UV-C, briefly: the wavelength microbial DNA can't survive", date: "Apr 2026", read: "6 min" },
   { slug: "mexico-city-water-guide", title: "A water guide for Mexico City — what's safe, what's not", date: "Mar 2026", read: "9 min" },
-  { slug: "vs-steripen", title: "Why we built Lumen instead of buying a SteriPen", date: "Feb 2026", read: "5 min" },
+  { slug: "vs-steripen", title: "Why we built Forth instead of buying a SteriPen", date: "Feb 2026", read: "5 min" },
   { slug: "patent-walkthrough", title: "Inside the patent: the geodesic refractor explained", date: "Jan 2026", read: "11 min" },
 ];
 
