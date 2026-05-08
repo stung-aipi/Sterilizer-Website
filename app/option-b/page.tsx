@@ -237,7 +237,7 @@ export default function HomeB() {
         <div className="relative h-[68vh] min-h-[460px] w-full overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/photos/rocky-peaks.jpg"
+            src="/photos/rocky-peaks.png"
             alt="The Old Man of Storr, Isle of Skye — first prototype field site"
             className="absolute inset-0 h-full w-full object-cover opacity-60"
           />

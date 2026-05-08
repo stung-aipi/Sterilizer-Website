@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <style>
+    .stroke { stroke: #0F1B2D; }
+    @media (prefers-color-scheme: dark) {
+      .stroke { stroke: #F7F4EE; }
+    }
+  </style>
+  <g class="stroke" fill="none" stroke-linejoin="miter" stroke-linecap="square">
+    <polygon points="11.5,3 17.02,3 25.96,9.49 29.37,20 25.96,30.51 17.02,37 11.5,37" stroke-width="2.8"/>
+    <g stroke-width="1.6" stroke-opacity="0.75">
+      <line x1="20.43" y1="20" x2="11.5" y2="3"/>
+      <line x1="20.43" y1="20" x2="25.96" y2="9.49"/>
+      <line x1="20.43" y1="20" x2="29.37" y2="20"/>
+      <line x1="20.43" y1="20" x2="25.96" y2="30.51"/>
+      <line x1="20.43" y1="20" x2="11.5" y2="37"/>
+    </g>
+  </g>
+</svg>

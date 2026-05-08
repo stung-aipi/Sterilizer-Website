@@ -6,6 +6,7 @@ import { DeviceCylinder } from "./components/DeviceCylinder";
 import { VariantToggle } from "./components/VariantToggle";
 import { SiteFooter } from "./components/SiteFooter";
 import { ExplodedReveal } from "./components/ExplodedReveal";
+import { HeroDeviceRotator } from "./components/HeroDeviceRotator";
 
 export const metadata = {
   title: `${BRAND} — Clean water, in any bottle, in seconds.`,
@@ -46,7 +47,7 @@ export default function HomeA() {
         <div className="mx-auto h-px max-w-[1240px] bg-a-rule" />
       </header>
 
-      {/* Hero — editorial split */}
+      {/* Hero — editorial split. */}
       <section className="relative">
         <div className="mx-auto grid max-w-[1240px] grid-cols-12 gap-8 px-8 pb-24 pt-20 md:pt-28">
           <div className="col-span-12 md:col-span-7">
@@ -77,13 +78,16 @@ export default function HomeA() {
           <div className="col-span-12 flex justify-center md:col-span-5 md:justify-center">
             <div className="relative">
               <div className="absolute -inset-12 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
-              <DeviceCylinder
-                className="relative h-[460px] w-auto md:h-[560px]"
-                body="#1A2433"
-                dome="#C8D4DC"
-                glow="#A6C7B6"
-                ink="#0F1B2D"
+              {/* Cap halos — light with a faint blue hue behind the top and bottom caps */}
+              <div
+                className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-sky-200/55 blur-3xl"
+                aria-hidden
               />
+              <div
+                className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full bg-sky-200/55 blur-3xl"
+                aria-hidden
+              />
+              <HeroDeviceRotator alt={`${BRAND} sterilizer — 3D rendering`} />
             </div>
           </div>
         </div>
@@ -105,7 +109,7 @@ export default function HomeA() {
         <div className="relative h-[68vh] min-h-[460px] w-full overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/photos/rocky-peaks.jpg"
+            src="/photos/rocky-peaks.png"
             alt="The Old Man of Storr, Isle of Skye"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -270,7 +274,7 @@ export default function HomeA() {
               <div className="grid h-full place-items-center">
                 <div className="relative">
                   <div className="absolute inset-0 animate-spinslow rounded-full border border-dashed border-a-ink/25" />
-                  <Logomark className="h-32 w-32 text-a-ink/80" />
+                  <Logomark className="h-32 w-32 origin-center animate-spinslow text-a-ink/80" />
                 </div>
               </div>
             </div>
@@ -293,8 +297,119 @@ export default function HomeA() {
         </div>
       </section>
 
+      {/* From the literature — peer-reviewed dossier */}
+      <section className="border-t border-a-rule">
+        <div className="mx-auto max-w-[1240px] px-8 py-28 md:py-32">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-14">
+            <div className="col-span-12 md:col-span-5 md:pr-6">
+              <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">
+                From the literature
+              </div>
+              <h2 className="mt-5 font-serif text-[40px] leading-[1.02] tracking-tightish md:text-[56px]">
+                Cited,
+                <br />
+                <span className="italic text-a-ink/85">on the record.</span>
+              </h2>
+              <p className="mt-7 max-w-md text-[15px] leading-[1.7] text-a-ink/70">
+                {BRAND} is built on a wavelength microbiology has been studying for sixty years. Three peer-reviewed papers, independently published, on the same 255–280 nm band the device operates within.
+              </p>
+              <div className="mt-10 hidden md:block">
+                <div className="h-px w-16 bg-a-ink/40" />
+                <p className="mt-5 max-w-xs font-serif text-[13.5px] italic leading-[1.55] text-a-ink/55">
+                  A short bibliography. Open each paper and read it for yourself — we'd rather you didn't take our word.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-span-12 md:col-span-7">
+              <ol className="border-t border-a-ink/20">
+                {[
+                  {
+                    id: "I",
+                    finding:
+                      "Across environmental and laboratory strains of E. coli and E. faecium, UV-C LEDs delivered up to six log₁₀ inactivation at fluences below 7 mJ/cm². The 265 nm band — the wavelength Forth operates within — produced the highest inactivation rate constant of any tested. No substantial photoreactivation was observed under light or dark conditions over eighteen hours.",
+                    authors: "Sério, Santos, Martins et al.",
+                    journal: "Scientific Reports — Nature",
+                    year: "2026",
+                    margin: "6 log₁₀",
+                    marginLabel: "< 7 mJ/cm² fluence",
+                    url: "https://www.nature.com/articles/s41598-026-44556-8",
+                  },
+                  {
+                    id: "II",
+                    finding:
+                      "Four clinical strains of Legionella pneumophila — including chlorine-tolerant isolates — were inactivated by more than three log₁₀ across the 255, 265 and 280 nm bands at fluences between 0.5 and 34 mJ/cm². The lowest dose, at 255 nm, did the most work.",
+                    authors: "Rasheduzzaman et al.",
+                    journal: "Microorganisms (MDPI), 10(2), 352",
+                    year: "2022",
+                    margin: "> 3 log₁₀",
+                    marginLabel: "Legionella, four strains",
+                    url: "https://www.mdpi.com/2076-2607/10/2/352",
+                  },
+                  {
+                    id: "III",
+                    finding:
+                      "Across three weeks of unsupervised operation in active hospital wards, a combined UV-C and ozone protocol delivered between 2.0- and 3.78-log₁₀ reductions across Gram-positive, Gram-negative, fungal and yeast surface pathogens.",
+                    authors: "Sci. Total Environ.",
+                    journal: "Elsevier",
+                    year: "2023",
+                    margin: "≥ 2 log₁₀",
+                    marginLabel: "hospital pathogens",
+                    url: "https://www.sciencedirect.com/science/article/pii/S0048969723025846",
+                  },
+                ].map((s) => (
+                  <li
+                    key={s.id}
+                    className="grid grid-cols-12 gap-x-5 gap-y-4 border-b border-a-ink/20 py-9 md:py-10"
+                  >
+                    <div className="col-span-12 flex items-baseline gap-4 md:col-span-2 md:flex-col md:items-start md:gap-0">
+                      <div className="font-serif text-[14px] italic text-a-ink/55">§&nbsp;{s.id}</div>
+                      <div className="md:mt-5">
+                        <div className="font-serif text-[26px] leading-none tracking-tightish text-a-ink md:text-[30px]">
+                          {s.margin}
+                        </div>
+                        <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-a-ink/50">
+                          {s.marginLabel}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-span-12 md:col-span-10">
+                      <p className="font-serif text-[19px] leading-[1.5] text-a-ink/90 md:text-[21px]">
+                        <span className="font-serif italic text-a-ink/55">“</span>
+                        {s.finding}
+                        <span className="font-serif italic text-a-ink/55">”</span>
+                      </p>
+                      <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-[10.5px] uppercase tracking-[0.2em] text-a-ink/55">
+                        <span className="text-a-ink/75">{s.authors}</span>
+                        <span aria-hidden className="text-a-ink/30">·</span>
+                        <span>{s.journal}</span>
+                        <span aria-hidden className="text-a-ink/30">·</span>
+                        <span>{s.year}</span>
+                      </div>
+                      <a
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-baseline gap-2 text-[13.5px] text-a-ink/75 underline-offset-[5px] hover:text-a-ink hover:underline"
+                      >
+                        Read the paper
+                        <span aria-hidden className="text-a-ink/45">↗</span>
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-a-ink/45">
+                Citations selected for direct relevance to {BRAND}'s 265 nm operating wavelength. No commercial relationship with any author or publisher.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Tested at the source — Waterfall */}
-      <section className="mx-auto max-w-[1240px] px-8 pb-28">
+      <section className="mx-auto max-w-[1240px] px-8 pb-28 pt-28">
         <div className="grid grid-cols-12 items-center gap-12">
           <div className="col-span-12 md:col-span-7">
             <div className="aspect-[3/2] w-full overflow-hidden rounded-3xl ring-1 ring-a-rule">

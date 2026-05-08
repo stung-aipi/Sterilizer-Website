@@ -56,13 +56,13 @@ const PARTS: Part[] = [
     label: { x: -300, y: 110 },
   },
   {
+    // Reveal handled by the er-emerge-left clip — wipes in past the housing's inner rim.
     id: "main-pcb",
     n: "03",
     name: "Main PCB",
     asm: { x: 0, y: 0 },
     exp: { x: -180, y: -32 },
     phase: [0.32, 0.85],
-    fadeIn: [0.28, 0.55],
     anchor: { x: 0, y: -14 },
     label: { x: -180, y: -120 },
   },
@@ -73,7 +73,6 @@ const PARTS: Part[] = [
     asm: { x: 0, y: 0 },
     exp: { x: -180, y: 32 },
     phase: [0.36, 0.9],
-    fadeIn: [0.32, 0.6],
     anchor: { x: 0, y: 14 },
     label: { x: -180, y: 130 },
   },
@@ -119,11 +118,13 @@ const PARTS: Part[] = [
   },
 ];
 
-// Render order: back-to-front. Internals first, housing covers them, caps then domes (which cover caps).
+// Render order: back-to-front. Housing first so internals (which fade in during the explode)
+// sit on top of it and read as emerging from inside, not sliding behind. Domes render last so
+// they cover the discs tucked inside their silhouette in the assembled state.
 const RENDER_ORDER = [
+  "housing",
   "main-pcb",
   "battery",
-  "housing",
   "left-disc",
   "right-disc",
   "left-dome",
@@ -383,6 +384,18 @@ export function ExplodedReveal({
       case "button":     inner = <ChargingPort />; break;
       default: return null;
     }
+    // Internals exit the left mouth — clip in world space so only the portion past
+    // the inner rim is drawn. The clip wraps an untransformed group so the part's
+    // own translate stays in world coords beneath it.
+    if (id === "main-pcb" || id === "battery") {
+      return (
+        <g key={id} clipPath="url(#er-emerge-left)">
+          <g transform={`translate(${s.x} ${s.y})`} style={{ opacity: s.opacity }}>
+            {inner}
+          </g>
+        </g>
+      );
+    }
     return (
       <g key={id} transform={`translate(${s.x} ${s.y})`} style={{ opacity: s.opacity }}>
         {inner}
@@ -394,7 +407,7 @@ export function ExplodedReveal({
     <section
       ref={wrapRef}
       className={`relative ${wrapClass}`}
-      style={{ height: "200vh" }}
+      style={{ height: "160vh" }}
       aria-label="Exploded device view"
     >
       <div className="sticky top-0 flex h-screen w-full flex-col overflow-hidden">
@@ -477,6 +490,17 @@ export function ExplodedReveal({
                   <stop offset="50%" stopColor={accentHex} stopOpacity="0.85" />
                   <stop offset="100%" stopColor={accentHex} stopOpacity="0" />
                 </linearGradient>
+                {/* Reveals only the world-x range left of the housing's inner rim
+                    (housing left-end ellipse rightmost point: housingX + (-160 + 6) = housingX - 154).
+                    Internals sliding out the left mouth wipe in as they cross this line. */}
+                <clipPath id="er-emerge-left">
+                  <rect
+                    x={VB.x - 100}
+                    y={VB.y - 100}
+                    width={Math.max(1, housingX - 154 - (VB.x - 100))}
+                    height={VB.h + 200}
+                  />
+                </clipPath>
               </defs>
 
               <line x1={VB.x + 30} y1="0" x2={VB.x + VB.w - 30} y2="0" stroke="url(#er-axis)" strokeWidth="0.8" strokeDasharray="2 6" />
@@ -574,7 +598,7 @@ export function ExplodedReveal({
 
         {/* Footer */}
         <div className="relative z-10 mx-auto w-full max-w-[1280px] flex-shrink-0 px-6 pb-6 md:px-10 md:pb-8">
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex items-end justify-between gap-6 md:grid md:grid-cols-3">
             <div className="flex items-center gap-3">
               <span
                 className="er-pulse block h-2 w-2 rounded-full"
@@ -592,7 +616,7 @@ export function ExplodedReveal({
                 </div>
               </div>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden text-center md:block md:justify-self-center">
               <div className={`${captionFont} text-[10px] uppercase tracking-[0.24em] ${muteClass}`}>
                 Pieces
               </div>
@@ -601,7 +625,7 @@ export function ExplodedReveal({
               </div>
             </div>
             <div
-              className={`${captionFont} text-[10.5px] uppercase tracking-[0.22em] ${muteClass}`}
+              className={`${captionFont} text-[10.5px] uppercase tracking-[0.22em] md:justify-self-end ${muteClass}`}
               style={{ opacity: 1 - ease(sm(0.05, 0.25, p)) }}
             >
               ↓ scroll to disassemble
