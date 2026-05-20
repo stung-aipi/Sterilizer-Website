@@ -6,7 +6,7 @@ import { DeviceCylinder } from "./components/DeviceCylinder";
 import { VariantToggle } from "./components/VariantToggle";
 import { SiteFooter } from "./components/SiteFooter";
 import { ExplodedReveal } from "./components/ExplodedReveal";
-import { HeroDeviceRotator } from "./components/HeroDeviceRotator";
+import { HeroColorPicker } from "./components/HeroColorPicker";
 
 export const metadata = {
   title: `${BRAND} — Clean water, in any bottle, in seconds.`,
@@ -76,19 +76,7 @@ export default function HomeA() {
           </div>
 
           <div className="col-span-12 flex justify-center md:col-span-5 md:justify-center">
-            <div className="relative">
-              <div className="absolute -inset-12 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
-              {/* Cap halos — light with a faint blue hue behind the top and bottom caps */}
-              <div
-                className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-sky-200/55 blur-3xl"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full bg-sky-200/55 blur-3xl"
-                aria-hidden
-              />
-              <HeroDeviceRotator alt={`${BRAND} sterilizer — 3D rendering`} />
-            </div>
+            <HeroColorPicker alt={`${BRAND} sterilizer — 3D rendering`} />
           </div>
         </div>
 
