@@ -1,4 +1,4 @@
-00:00.094  color_management | Using OCIO=C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\colormanagement\config.ocio
+00:00.079  color_management | Using OCIO=C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\colormanagement\config.ocio
 c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sun.py:134: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   mat.use_nodes = True
 c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sun.py:258: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
@@ -11,7 +11,7 @@ c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sun.p
   mat.use_nodes = True
 c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sun.py:393: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
   world.use_nodes = True
-44:40.719  render           | Saved: 'c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sun-frame-00.png'
+45:29.188  render           | Saved: 'c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sun-frame-00.png'
 BlenderMCP addon registered
 BlenderMCP addon unregistered
 Info: Applied modifier was not first, result may not be as expected

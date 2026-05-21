@@ -35,11 +35,12 @@ CAP_EDGE_EMIT= (0.55,  0.80,  1.0,   1.0)
 
 # ── Coarse matte texture parameters (vs original) ─────────────────────────────
 # Original: scale=220, bump_strength=1.6, bump_dist=0.007, rough 0.45-0.85
-VORONOI_SCALE  = 60.0    # larger cells → coarser visible texture
-BUMP_STRENGTH  = 4.0     # deeper surface relief
-BUMP_DISTANCE  = 0.020   # larger physical displacement per cell
-ROUGH_MIN      = 0.70    # higher floor → more uniformly matte
-ROUGH_MAX      = 0.97    # near-total matte at peaks
+# Goal: same cell density as original, but taller/deeper bumps per cell
+VORONOI_SCALE  = 180.0   # close to original density — avoids porous/crater look
+BUMP_STRENGTH  = 3.5     # deeper surface relief per cell
+BUMP_DISTANCE  = 0.016   # taller physical displacement
+ROUGH_MIN      = 0.50    # close to original floor
+ROUGH_MAX      = 0.90    # slightly higher ceiling
 
 
 def reset_scene():

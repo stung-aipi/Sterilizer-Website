@@ -17,7 +17,7 @@ const COLORWAYS: Array<{
   { id: "midnight", label: "Midnight",            body: "#1A2433", dome: "#C8D4DC", glow: "#7FB3FF", halo: "#BAE6FD" },
   { id: "coral",    label: "Coral",   sub: "Limited", body: "#3F2424", dome: "#E89B7C", glow: "#E89B7C", halo: "#E89B7C", image: "/renderings/forth-device-coral-frame-00.png" },
   { id: "sage",     label: "Sage",                body: "#1F2A28", dome: "#A6C7B6", glow: "#A6C7B6", halo: "#A6C7B6", image: "/renderings/forth-device-sage-frame-00.png" },
-  { id: "sun",      label: "Sun",                 body: "#1F2A36", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFE6A1", image: "/renderings/forth-device-sun-frame-00.png" },
+  { id: "sun",      label: "Sun",                 body: "#2B2210", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFE6A1", image: "/renderings/forth-device-sun-frame-00.png" },
 ];
 
 export function HeroColorPicker({ alt }: { alt: string }) {

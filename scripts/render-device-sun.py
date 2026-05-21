@@ -31,9 +31,9 @@ RING_RADIUS = 1.101
 RING_DEPTH  = 0.06
 
 # ── Sun palette (Blender linear RGB) ──────────────────────────────────────────
-# Body: #1F2A36 dark navy-slate
-BODY_DARK    = (0.020, 0.035, 0.056, 1.0)
-BODY_LIGHT   = (0.030, 0.050, 0.080, 1.0)
+# Body: #2B2210 dark warm amber — same hue family as the golden dome
+BODY_DARK    = (0.025, 0.018, 0.004, 1.0)
+BODY_LIGHT   = (0.045, 0.033, 0.008, 1.0)
 # Dome: #FFE6A1 warm golden yellow
 CAP_BASE     = (1.000, 0.797, 0.376, 1.0)
 CAP_EDGE     = (1.000, 0.920, 0.600, 1.0)   # brighter warm edge accent
