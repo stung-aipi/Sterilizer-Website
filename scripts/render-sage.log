@@ -1,0 +1,29 @@
+00:00.094  color_management | Using OCIO=C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\colormanagement\config.ocio
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:53: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat = bpy.data.materials.new("BodyMat"); mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:112: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat = bpy.data.materials.new(f"CapMat_{name}"); mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:119: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  emat = bpy.data.materials.new(f"CapEdge_{name}"); emat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:155: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat = bpy.data.materials.new(f"EmitMat_{name}"); mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:133: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat = bpy.data.materials.new(f"HaloMat_{name}"); mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:199: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  cmat=bpy.data.materials.new("ContactMat"); cmat.use_nodes=True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:176: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new("WordmarkMat"); mat.use_nodes=True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:213: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new(f"SB_{name}"); mat.use_nodes=True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:242: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  sc.world=world; world.use_nodes=True
+30:42.625  render           | Saved: 'c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sage-frame-00.png'
+BlenderMCP addon registered
+BlenderMCP addon unregistered
+Info: Applied modifier was not first, result may not be as expected
+Info: Removed 0 vertices
+[sage] 1/1 → c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sage-frame-00.png
+[sage] Done.
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:37:22)
+
+Blender quit

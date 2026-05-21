@@ -1,0 +1,23 @@
+00:00.125  color_management | Using OCIO=C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\colormanagement\config.ocio
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:132: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:256: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:265: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  edge_mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:308: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  contact_mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:334: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-coral.py:391: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+01:05:04.000  render           | Saved: 'c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-coral-frame-00.png'
+BlenderMCP addon registered
+BlenderMCP addon unregistered
+Info: Applied modifier was not first, result may not be as expected
+Info: Removed 0 vertices
+[coral] 1/1 → c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-coral-frame-00.png
+[coral] Done. Frames in c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:37:22)
+
+Blender quit

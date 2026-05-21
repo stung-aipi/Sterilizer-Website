@@ -1,0 +1,23 @@
+00:00.093  color_management | Using OCIO=C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\colormanagement\config.ocio
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:132: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:256: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:265: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  edge_mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:308: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  contact_mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:334: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\scripts\render-device-sage.py:391: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+01:03:33.781  render           | Saved: 'c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sage-frame-00.png'
+BlenderMCP addon registered
+BlenderMCP addon unregistered
+Info: Applied modifier was not first, result may not be as expected
+Info: Removed 0 vertices
+[sage] 1/1 → c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings\forth-device-sage-frame-00.png
+[sage] Done. Frames in c:\Users\Stephen\Documents\GitHub\Sterilizer-Website\public\renderings
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:37:22)
+
+Blender quit

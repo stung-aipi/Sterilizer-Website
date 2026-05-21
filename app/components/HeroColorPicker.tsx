@@ -12,16 +12,20 @@ const COLORWAYS: Array<{
   dome: string;
   glow: string;
   halo: string;
+  image?: string;
 }> = [
   { id: "midnight", label: "Midnight",            body: "#1A2433", dome: "#C8D4DC", glow: "#7FB3FF", halo: "#BAE6FD" },
-  { id: "coral",    label: "Coral",   sub: "Limited", body: "#3F2424", dome: "#E89B7C", glow: "#E89B7C", halo: "#E89B7C" },
-  { id: "sage",     label: "Sage",                body: "#1F2A28", dome: "#A6C7B6", glow: "#A6C7B6", halo: "#A6C7B6" },
-  { id: "sun",      label: "Sun",                 body: "#1F2A36", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFE6A1" },
+  { id: "coral",    label: "Coral",   sub: "Limited", body: "#3F2424", dome: "#E89B7C", glow: "#E89B7C", halo: "#E89B7C", image: "/renderings/forth-device-coral-frame-00.png" },
+  { id: "sage",     label: "Sage",                body: "#1F2A28", dome: "#A6C7B6", glow: "#A6C7B6", halo: "#A6C7B6", image: "/renderings/forth-device-sage-frame-00.png" },
+  { id: "sun",      label: "Sun",                 body: "#1F2A36", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFE6A1", image: "/renderings/forth-device-sun-frame-00.png" },
 ];
 
 export function HeroColorPicker({ alt }: { alt: string }) {
   const [activeId, setActiveId] = useState("midnight");
+  const [coarse, setCoarse] = useState(false);
   const cw = COLORWAYS.find((c) => c.id === activeId) ?? COLORWAYS[0];
+
+  const showCoarse = activeId === "midnight" && coarse;
 
   return (
     <div className="flex flex-col items-center gap-5">
@@ -41,8 +45,22 @@ export function HeroColorPicker({ alt }: { alt: string }) {
           aria-hidden
         />
 
-        {activeId === "midnight" ? (
+        {showCoarse ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src="/renderings/forth-device-midnight-coarse-frame-00.png"
+            alt={alt}
+            className="h-[460px] md:h-[560px] w-auto object-contain"
+          />
+        ) : activeId === "midnight" ? (
           <HeroDeviceRotator alt={alt} />
+        ) : cw.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cw.image}
+            alt={alt}
+            className="h-[460px] md:h-[560px] w-auto object-contain"
+          />
         ) : (
           <DeviceVisual
             className="h-[460px] md:h-[560px] w-auto"
@@ -57,7 +75,7 @@ export function HeroColorPicker({ alt }: { alt: string }) {
 
       {/* Colorway swatches — fixed width matches device container */}
       <div className="flex w-[307px] flex-col items-center gap-2 md:w-[373px]">
-        <span className="text-[12px] tracking-[0.12em] text-a-ink/60">
+        <span className="text-[15px] font-medium tracking-tight text-a-ink">
           {cw.label}
           {cw.sub && (
             <span className="ml-1.5 rounded-full bg-a-ink/10 px-1.5 py-0.5 text-[10px] uppercase tracking-[0.14em]">
@@ -71,7 +89,7 @@ export function HeroColorPicker({ alt }: { alt: string }) {
             return (
               <button
                 key={c.id}
-                onClick={() => setActiveId(c.id)}
+                onClick={() => { setActiveId(c.id); setCoarse(false); }}
                 aria-label={c.label}
                 title={c.label}
                 className={`h-5 w-5 rounded-full transition-all duration-200 ${
@@ -84,6 +102,28 @@ export function HeroColorPicker({ alt }: { alt: string }) {
             );
           })}
         </div>
+
+        {/* Texture toggle — only visible for Midnight */}
+        {activeId === "midnight" && (
+          <div className="flex items-center gap-1 rounded-full bg-a-ink/8 p-0.5 text-[11px] font-medium tracking-wide">
+            <button
+              onClick={() => setCoarse(false)}
+              className={`rounded-full px-3 py-1 transition-all duration-200 ${
+                !coarse ? "bg-a-bg text-a-ink shadow-sm" : "text-a-ink/50 hover:text-a-ink/75"
+              }`}
+            >
+              Standard
+            </button>
+            <button
+              onClick={() => setCoarse(true)}
+              className={`rounded-full px-3 py-1 transition-all duration-200 ${
+                coarse ? "bg-a-bg text-a-ink shadow-sm" : "text-a-ink/50 hover:text-a-ink/75"
+              }`}
+            >
+              Coarse
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
