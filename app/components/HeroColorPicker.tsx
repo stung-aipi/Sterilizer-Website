@@ -33,44 +33,46 @@ export function HeroColorPicker({ alt }: { alt: string }) {
           so swapping to the SVG variants doesn't reflow the swatch row below. */}
       <div className="relative flex h-[460px] w-[307px] items-center justify-center md:h-[560px] md:w-[373px]">
         {/* Ambient background glow — tints with the active colorway */}
-        <div className="pointer-events-none absolute -inset-12 -z-10 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -inset-12 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
         <div
-          className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
           style={{ backgroundColor: cw.halo, opacity: showCoarse ? 0.40 : 0.55, transition: "background-color 0.6s ease, opacity 0.6s ease" }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute left-1/2 bottom-0 -z-10 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
+          className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
           style={{ backgroundColor: cw.halo, opacity: showCoarse ? 0.40 : 0.55, transition: "background-color 0.6s ease, opacity 0.6s ease" }}
           aria-hidden
         />
 
-        {showCoarse ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src="/renderings/forth-device-midnight-coarse-frame-00.png"
-            alt={alt}
-            className="h-[460px] md:h-[560px] w-auto object-contain"
-          />
-        ) : activeId === "midnight" ? (
-          <HeroDeviceRotator alt={alt} />
-        ) : cw.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={cw.image}
-            alt={alt}
-            className="h-[460px] md:h-[560px] w-auto object-contain"
-          />
-        ) : (
-          <DeviceVisual
-            className="h-[460px] md:h-[560px] w-auto"
-            body={cw.body}
-            dome={cw.dome}
-            glow={cw.glow}
-            ink="#0F1B2D"
-            glowOn
-          />
-        )}
+        <div className="relative z-10 flex h-full w-full items-center justify-center">
+          {showCoarse ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src="/renderings/forth-device-midnight-coarse-frame-00.png"
+              alt={alt}
+              className="h-[460px] md:h-[560px] w-auto object-contain"
+            />
+          ) : activeId === "midnight" ? (
+            <HeroDeviceRotator alt={alt} />
+          ) : cw.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={cw.image}
+              alt={alt}
+              className="h-[460px] md:h-[560px] w-auto object-contain"
+            />
+          ) : (
+            <DeviceVisual
+              className="h-[460px] md:h-[560px] w-auto"
+              body={cw.body}
+              dome={cw.dome}
+              glow={cw.glow}
+              ink="#0F1B2D"
+              glowOn
+            />
+          )}
+        </div>
       </div>
 
       {/* Colorway swatches — fixed width matches device container */}
