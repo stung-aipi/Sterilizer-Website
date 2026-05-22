@@ -25,22 +25,22 @@ CAP_RADIUS  = 1.10
 RING_RADIUS = 1.101
 RING_DEPTH  = 0.06
 
-# ── Midnight palette ───────────────────────────────────────────────────────────
-BODY_DARK    = (0.003, 0.006, 0.014, 1.0)
-BODY_LIGHT   = (0.026, 0.040, 0.066, 1.0)
-CAP_BASE     = (0.55,  0.72,  0.92,  1.0)
-CAP_EDGE     = (0.85,  0.93,  1.0,   1.0)
-CAP_EMIT     = (0.45,  0.70,  1.0,   1.0)
-CAP_EDGE_EMIT= (0.55,  0.80,  1.0,   1.0)
+# ── Midnight palette (adjusted for bump brightening compensation) ──────────────
+BODY_DARK    = (0.002, 0.004, 0.010, 1.0)  # darker to offset bump brightening
+BODY_LIGHT   = (0.018, 0.028, 0.048, 1.0)  # darker to offset bump brightening
+CAP_BASE     = (0.58,  0.66,  0.80,  1.0)  # slightly more blue
+CAP_EDGE     = (0.86,  0.90,  0.95,  1.0)  # slightly more blue
+CAP_EMIT     = (0.50,  0.66,  0.88,  1.0)  # slightly more blue
+CAP_EDGE_EMIT= (0.60,  0.75,  0.92,  1.0)  # slightly more blue
 
-# ── Coarse matte texture parameters (vs original) ─────────────────────────────
-# Original: scale=220, bump_strength=1.6, bump_dist=0.007, rough 0.45-0.85
-# Goal: same cell density as original, but taller/deeper bumps per cell
-VORONOI_SCALE  = 180.0   # close to original density — avoids porous/crater look
-BUMP_STRENGTH  = 3.5     # deeper surface relief per cell
-BUMP_DISTANCE  = 0.016   # taller physical displacement
-ROUGH_MIN      = 0.50    # close to original floor
-ROUGH_MAX      = 0.90    # slightly higher ceiling
+# ── Coarse matte texture parameters (vs standard) ────────────────────────────
+# Standard: scale=220, bump_strength=1.6, bump_dist=0.007, rough 0.45-0.85
+# Goal: larger cells + deeper bumps, all colors identical to standard
+VORONOI_SCALE  = 150.0   # larger cells than standard's 220
+BUMP_STRENGTH  = 2.2     # deeper relief than standard's 1.6
+BUMP_DISTANCE  = 0.009   # slightly more displacement than standard's 0.007
+ROUGH_MIN      = 0.45    # identical to standard
+ROUGH_MAX      = 0.85    # identical to standard
 
 
 def reset_scene():

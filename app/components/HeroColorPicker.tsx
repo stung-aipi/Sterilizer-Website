@@ -15,9 +15,9 @@ const COLORWAYS: Array<{
   image?: string;
 }> = [
   { id: "midnight", label: "Midnight",            body: "#1A2433", dome: "#C8D4DC", glow: "#7FB3FF", halo: "#BAE6FD" },
-  { id: "coral",    label: "Coral",   sub: "Limited", body: "#3F2424", dome: "#E89B7C", glow: "#E89B7C", halo: "#E89B7C", image: "/renderings/forth-device-coral-frame-00.png" },
-  { id: "sage",     label: "Sage",                body: "#1F2A28", dome: "#A6C7B6", glow: "#A6C7B6", halo: "#A6C7B6", image: "/renderings/forth-device-sage-frame-00.png" },
-  { id: "sun",      label: "Sun",                 body: "#2B2210", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFE6A1", image: "/renderings/forth-device-sun-frame-00.png" },
+  { id: "coral",    label: "Coral",   sub: "Limited", body: "#3F2424", dome: "#E89B7C", glow: "#E89B7C", halo: "#FDDDD4", image: "/renderings/forth-device-coral-frame-00.png" },
+  { id: "sage",     label: "Sage",                body: "#1F2A28", dome: "#A6C7B6", glow: "#A6C7B6", halo: "#D4EDE6", image: "/renderings/forth-device-sage-frame-00.png" },
+  { id: "sun",      label: "Sun",                 body: "#2B2210", dome: "#FFE6A1", glow: "#F4D35E", halo: "#FFF3CC", image: "/renderings/forth-device-sun-frame-00.png" },
 ];
 
 export function HeroColorPicker({ alt }: { alt: string }) {
@@ -33,15 +33,15 @@ export function HeroColorPicker({ alt }: { alt: string }) {
           so swapping to the SVG variants doesn't reflow the swatch row below. */}
       <div className="relative flex h-[460px] w-[307px] items-center justify-center md:h-[560px] md:w-[373px]">
         {/* Ambient background glow — tints with the active colorway */}
-        <div className="pointer-events-none absolute -inset-12 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -inset-12 -z-10 rounded-full bg-a-sage/15 blur-3xl" aria-hidden />
         <div
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
-          style={{ backgroundColor: cw.halo, opacity: 0.55, transition: "background-color 0.6s ease" }}
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
+          style={{ backgroundColor: cw.halo, opacity: showCoarse ? 0.40 : 0.55, transition: "background-color 0.6s ease, opacity 0.6s ease" }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
-          style={{ backgroundColor: cw.halo, opacity: 0.55, transition: "background-color 0.6s ease" }}
+          className="pointer-events-none absolute left-1/2 bottom-0 -z-10 -translate-x-1/2 translate-y-1/2 h-80 w-80 rounded-full blur-3xl"
+          style={{ backgroundColor: cw.halo, opacity: showCoarse ? 0.40 : 0.55, transition: "background-color 0.6s ease, opacity 0.6s ease" }}
           aria-hidden
         />
 

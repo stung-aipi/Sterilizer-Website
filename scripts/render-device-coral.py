@@ -13,8 +13,6 @@ After rendering all frames, encode with ffmpeg:
 import bpy
 import math
 import os
-import shutil
-
 REPO_ROOT         = r"c:\Users\Stephen\Documents\GitHub\Sterilizer-Website"
 OUT_DIR           = os.path.join(REPO_ROOT, "public", "renderings")
 HDRI_PATH         = os.path.join(REPO_ROOT, "scripts", "hdri", "studio_small_08_1k.exr")
@@ -22,7 +20,6 @@ WORDMARK_TEX_PATH = os.path.join(REPO_ROOT, "scripts", "_wordmark.png")
 
 RES_X, RES_Y = 1600, 2400
 SAMPLES      = 512
-NUM_FRAMES   = 1   # set to 104 for full rotation
 
 BODY_LENGTH = 6.4
 BODY_RADIUS = 1.10
@@ -471,20 +468,10 @@ def main():
             continue
         obj.parent = device_root
 
-    for i in range(NUM_FRAMES):
-        progress = i / max(NUM_FRAMES - 1, 1)
-        device_root.rotation_euler = (0, 0, math.radians(-progress * 90.0))
-        frame_path = os.path.join(OUT_DIR, f"forth-device-coral-frame-{i:02d}.png")
-        bpy.context.scene.render.filepath = frame_path
-        bpy.ops.render.render(write_still=True)
-        print(f"[coral] {i+1}/{NUM_FRAMES} → {frame_path}")
-
-    shutil.copy(
-        os.path.join(OUT_DIR, "forth-device-coral-frame-00.png"),
-        os.path.join(OUT_DIR, "forth-device-coral-hero.png"),
-    )
-    device_root.rotation_euler = (0, 0, 0)
-    print(f"[coral] Done. Frames in {OUT_DIR}")
+    frame_path = os.path.join(OUT_DIR, "forth-device-coral-frame-00.png")
+    bpy.context.scene.render.filepath = frame_path
+    bpy.ops.render.render(write_still=True)
+    print(f"[coral] Done → {frame_path}")
 
 
 if __name__ == "__main__":
