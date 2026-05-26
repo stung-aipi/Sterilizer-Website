@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { BRAND, TAGLINE, SUBLINE, SPECS, COMPARE_ROWS, FAQS, USE_CASES, PRESS_QUOTES } from "./lib/brand";
 import { HorizontalDeviceMark } from "./components/HorizontalDeviceMark";
 import { Logomark } from "./components/Logomark";
@@ -25,7 +25,7 @@ export default function HomeA() {
   return (
     <div className="min-h-screen bg-a-bg text-a-ink bg-grain">
       {/* Header */}
-      <header className="relative z-20">
+      <header className="sticky top-0 z-20 bg-a-bg/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1240px] items-center justify-between px-8 py-6">
           <Link href="/" className="flex items-center text-a-ink" aria-label={BRAND}>
             <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
@@ -82,12 +82,18 @@ export default function HomeA() {
 
         {/* Quiet credentials strip */}
         <div className="border-y border-a-rule bg-a-bg/60">
-          <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-8 overflow-hidden px-8 py-5 font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55">
-            <span>EPA-validated</span>
-            <span className="hidden md:inline">87 × 22 mm · 32 g</span>
-            <span>30 cycles / charge</span>
-            <span className="hidden md:inline">2-year warranty</span>
-            <span>Made in Scotland</span>
+          <div className="mx-auto max-w-[1240px] overflow-x-auto px-8 py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex min-w-max items-center gap-8 font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55">
+              <span>EPA-validated</span>
+              <span aria-hidden className="text-a-ink/25">·</span>
+              <span>87 × 22 mm · 32 g</span>
+              <span aria-hidden className="text-a-ink/25">·</span>
+              <span>30 cycles / charge</span>
+              <span aria-hidden className="text-a-ink/25">·</span>
+              <span>2-year warranty</span>
+              <span aria-hidden className="text-a-ink/25">·</span>
+              <span>Made in Scotland</span>
+            </div>
           </div>
         </div>
       </section>
@@ -512,3 +518,4 @@ export default function HomeA() {
     </div>
   );
 }
+
