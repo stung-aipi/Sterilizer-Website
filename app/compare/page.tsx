@@ -29,7 +29,7 @@ export default function Compare() {
             {COMPARE_ROWS.map((row) => (
               <tr key={row.label} className="border-t border-black/10">
                 <td className="px-6 py-5 text-neutral-500">{row.label}</td>
-                <td className="px-6 py-5 font-medium">{row.lumen}</td>
+                <td className="px-6 py-5 font-medium">{row.forth}</td>
                 <td className="px-6 py-5 text-neutral-700">{row.steripen}</td>
                 <td className="px-6 py-5 text-neutral-700">{row.larq}</td>
                 <td className="px-6 py-5 text-neutral-700">{row.tabs}</td>

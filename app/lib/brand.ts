@@ -20,14 +20,14 @@ export const SPECS = {
 };
 
 export const COMPARE_ROWS = [
-  { label: "Form factor", lumen: "Drop-in puck", steripen: "Handheld pen", larq: "Proprietary bottle", tabs: "Tablet" },
-  { label: "Use any bottle", lumen: "Yes", steripen: "Yes (stir)", larq: "No", tabs: "Yes" },
-  { label: "Time to clean", lumen: "60 sec", steripen: "90 sec stir", larq: "60 sec", tabs: "30 min" },
-  { label: "Kills viruses", lumen: "Yes", steripen: "Yes", larq: "Yes", tabs: "Partial" },
-  { label: "App control", lumen: "Yes", steripen: "No", larq: "Limited", tabs: "—" },
-  { label: "Charging", lumen: "Induction (waterproof)", steripen: "USB-C", larq: "USB-C", tabs: "—" },
-  { label: "Lifetime cost", lumen: "Replacement domes only", steripen: "Bulb replacements", larq: "Bottle lock-in", tabs: "Per-use cost" },
-  { label: "Price", lumen: "From $39", steripen: "$50–100", larq: "$95–130", tabs: "$0.50/dose" },
+  { label: "Form factor", forth: "Drop-in puck", steripen: "Handheld pen", larq: "Proprietary bottle", tabs: "Tablet" },
+  { label: "Use any bottle", forth: "Yes", steripen: "Yes (stir)", larq: "No", tabs: "Yes" },
+  { label: "Time to clean", forth: "60 sec", steripen: "90 sec stir", larq: "60 sec", tabs: "30 min" },
+  { label: "Kills viruses", forth: "Yes", steripen: "Yes", larq: "Yes", tabs: "Partial" },
+  { label: "App control", forth: "Yes", steripen: "No", larq: "Limited", tabs: "—" },
+  { label: "Charging", forth: "Induction (waterproof)", steripen: "USB-C", larq: "USB-C", tabs: "—" },
+  { label: "Lifetime cost", forth: "Replacement domes only", steripen: "Bulb replacements", larq: "Bottle lock-in", tabs: "Per-use cost" },
+  { label: "Price", forth: "From $39", steripen: "$50–100", larq: "$95–130", tabs: "$0.50/dose" },
 ];
 
 export const FAQS = [
@@ -61,8 +61,8 @@ export const USE_CASES = [
   { tag: "Travel", line: "Mexico City to Marrakech — your bottle, your water, no drama." },
   { tag: "At home", line: "Tap-to-bottle peace of mind for the school run." },
   { tag: "The gym", line: "Clean refills at the fountain. No more plastic." },
-  { tag: "Outdoors", line: "Streams, lakes, refill stops — disinfected in a minute." },
-  { tag: "Hotels", line: "Mini-bar bottles cost £6. Tap water costs nothing." },
+  { tag: "Outdoors", line: "Streams, lakes, refill stops — disinfected in sixty seconds." },
+  { tag: "Hotels", line: "Mini-bar water adds up. Tap water costs nothing." },
 ];
 
 export const PRESS_QUOTES = [

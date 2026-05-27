@@ -7,6 +7,7 @@ import { VariantToggle } from "./components/VariantToggle";
 import { SiteFooter } from "./components/SiteFooter";
 import { ExplodedReveal } from "./components/ExplodedReveal";
 import { HeroColorPicker } from "./components/HeroColorPicker";
+import { FaqAccordion } from "./components/FaqAccordion";
 
 export const metadata = {
   title: `${BRAND} — Clean water, in any bottle, in seconds.`,
@@ -40,7 +41,7 @@ export default function HomeA() {
           <div className="flex items-center gap-3">
             <span className="hidden text-[12px] tracking-[0.12em] text-a-ink/60 sm:inline">US · USD</span>
             <Link href="/shop" className="rounded-full bg-a-ink px-4 py-1.5 text-[13px] text-a-bg">
-              Buy
+              Pre-order
             </Link>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default function HomeA() {
               <span aria-hidden className="text-a-ink/25">·</span>
               <span>87 × 22 mm · 32 g</span>
               <span aria-hidden className="text-a-ink/25">·</span>
-              <span>30 cycles / charge</span>
+              <span>30 cycles per charge</span>
               <span aria-hidden className="text-a-ink/25">·</span>
               <span>2-year warranty</span>
               <span aria-hidden className="text-a-ink/25">·</span>
@@ -131,14 +132,14 @@ export default function HomeA() {
               Drop. Shake.<br /> Drink.
             </h2>
             <p className="mt-6 max-w-sm text-[15px] leading-[1.65] text-a-ink/70">
-              Three motions. Sixty seconds, start to finish. No filters to change, no cartridges to replace, no plastic between you and the water.
+              Three motions. Sixty seconds, start to finish. No filters to change, no cartridges to replace.
             </p>
           </div>
           <ol className="col-span-12 grid grid-cols-1 gap-px bg-a-rule md:col-span-8 md:grid-cols-3">
             {[
               { n: "01", h: "Drop it in", b: "Drops into any bottle with a neck wider than 25 mm. Fully submersible, fully waterproof." },
-              { n: "02", h: "Shake to start", b: "A motion-detected handshake fires the standard 60-second cycle. No buttons, no ports, no fuss." },
-              { n: "03", h: "Drink", b: "Dual UV-C emitters at 265 nm reach every face of the bottle. Bacteria, viruses, protozoa — handled." },
+              { n: "02", h: "Shake to start", b: "A single shake fires the 60-second cycle. No buttons, no ports, no fuss." },
+              { n: "03", h: "Drink", b: "Dual UV-C emitters at 265 nm reach every face of the bottle. Sterile water, every time." },
             ].map((s) => (
               <li key={s.n} className="bg-a-bg p-7">
                 <div className="font-serif text-[14px] italic text-a-ink/55">{s.n}</div>
@@ -153,9 +154,9 @@ export default function HomeA() {
       {/* Scroll-pinned exploded view */}
       <ExplodedReveal
         tone="light"
-        eyebrow="Fig. 04 — Inside the cylinder"
-        title="Six pieces. One sealed instrument."
-        description="Scroll to disassemble. The body resolves into its components — every part engineered to never need replacing."
+        eyebrow="Inside the cylinder"
+        title="Eight pieces. Six components. One sealed instrument."
+        description="Scroll to disassemble. The body resolves into its components — every part engineered to last. No internal replacements needed."
       />
 
       {/* Big product hero shot section */}
@@ -167,7 +168,7 @@ export default function HomeA() {
               An instrument, not a gadget.
             </h3>
             <p className="mt-6 max-w-md text-[15px] leading-[1.7] text-a-bg/75">
-              An 87 × 22 mm cylinder of recycled aluminium, capped at each end by a faceted geodesic emitter. No buttons. No ports. No seams. Charged by induction; sealed for life. Eight components. One sealed instrument.
+              An 87 × 22 mm cylinder of recycled aluminium, capped at each end by a faceted geodesic emitter. No buttons. No ports. No seams. Charged by induction; sealed for life. Only eight pieces. Built to last.
             </p>
             <dl className="mt-10 grid grid-cols-2 gap-y-5 text-[13px]">
               {[
@@ -229,7 +230,7 @@ export default function HomeA() {
                   {COMPARE_ROWS.slice(0, 5).map((row) => (
                     <tr key={row.label} className="border-t border-a-rule">
                       <td className="px-5 py-4 text-a-ink/65">{row.label}</td>
-                      <td className="px-5 py-4 font-medium">{row.lumen}</td>
+                      <td className="px-5 py-4 font-medium">{row.forth}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.steripen}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.larq}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.tabs}</td>
@@ -249,7 +250,7 @@ export default function HomeA() {
             {PRESS_QUOTES.map((p) => (
               <figure key={p.source}>
                 <blockquote className="font-serif text-[18px] leading-snug text-a-ink/85">
-                  "{p.text}"
+                  “{p.text}”
                 </blockquote>
                 <figcaption className="mt-4 text-[11px] uppercase tracking-[0.18em] text-a-ink/55">
                   — {p.source}
@@ -279,7 +280,7 @@ export default function HomeA() {
               UV-C at 265 nanometres — the wavelength microbial DNA cannot survive.
             </h3>
             <p className="mt-6 max-w-xl text-[15px] leading-[1.7] text-a-ink/70">
-              Twin geodesic emitters refract dose across every face of the bottle. There is no shadowed water and no missed surface, regardless of bottle shape. Tested against E. coli, rotavirus, and Cryptosporidium. EPA log-reduction methods.
+              Twin geodesic emitters project UV-C through twelve refractive facets, reaching every face of the bottle. No shadowed water, no missed surface, regardless of bottle shape. Tested against E. coli, rotavirus, and Cryptosporidium. Validated to EPA log-reduction standards.
             </p>
             <Link
               href="/technology"
@@ -305,7 +306,7 @@ export default function HomeA() {
                 <span className="italic text-a-ink/85">on the record.</span>
               </h2>
               <p className="mt-7 max-w-md text-[15px] leading-[1.7] text-a-ink/70">
-                {BRAND} is built on a wavelength microbiology has been studying for sixty years. Three peer-reviewed papers, independently published, on the same 255–280 nm band the device operates within.
+                {BRAND} is built on a wavelength microbiology has been studying for sixty years. Three peer-reviewed papers, independently conducted, on the same 255–280 nm band the device operates within.
               </p>
               <div className="mt-10 hidden md:block">
                 <div className="h-px w-16 bg-a-ink/40" />
@@ -421,7 +422,7 @@ export default function HomeA() {
               Cleared against water that's never seen a tap.
             </h3>
             <p className="mt-6 max-w-md text-[15px] leading-[1.7] text-a-ink/70">
-              Every prototype is validated in burns, lochs, and the splash pools of the Cuillin. Standard EPA log-reduction protocols, applied to the ten kinds of water our engineers couldn't otherwise drink.
+              Every prototype is validated in burns, lochs, and the splash pools of the Cuillin. Standard EPA log-reduction protocols, applied to water our engineers couldn't otherwise drink.
             </p>
             <Link
               href="/technology"
@@ -471,17 +472,7 @@ export default function HomeA() {
             </Link>
           </div>
           <div className="col-span-12 md:col-span-8">
-            <div className="divide-y divide-a-rule rounded-3xl bg-a-bg ring-1 ring-a-rule">
-              {FAQS.slice(0, 4).map((f) => (
-                <details key={f.q} className="group p-6">
-                  <summary className="flex cursor-pointer items-center justify-between gap-6 list-none">
-                    <span className="font-serif text-[20px] leading-snug">{f.q}</span>
-                    <span className="text-a-ink/40 transition group-open:rotate-45">＋</span>
-                  </summary>
-                  <p className="mt-4 max-w-2xl text-[14.5px] leading-[1.65] text-a-ink/70">{f.a}</p>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion faqs={FAQS.slice(0, 4)} />
           </div>
         </div>
       </section>
@@ -492,9 +483,9 @@ export default function HomeA() {
           <div className="col-span-12 md:col-span-6">
             <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-bg/55">Early access</div>
             <h3 className="mt-4 font-serif text-[44px] leading-[1.05] tracking-tightish">
-              Pre-orders open
+              Pre-orders
               <br />
-              <span className="italic text-a-bg/85">this spring.</span>
+              <span className="italic text-a-bg/85">coming soon.</span>
             </h3>
             <p className="mt-5 max-w-md text-[15px] leading-[1.65] text-a-bg/75">
               Leave us your address and we'll write once — when the first batch ships from Edinburgh.

@@ -109,7 +109,7 @@ const PARTS: Part[] = [
   {
     id: "button",
     n: "08",
-    name: "Charging port",
+    name: "Charging contact",
     asm: { x: 0, y: -51 },        // centered on housing, recessed slightly into hole
     exp: { x: 80, y: -175 },      // tracks housing's exploded x; lifts upward
     phase: [0.18, 0.65],
