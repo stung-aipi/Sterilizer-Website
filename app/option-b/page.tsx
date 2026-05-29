@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { BRAND, SPECS, COMPARE_ROWS, FAQS, USE_CASES, PRESS_QUOTES } from "../lib/brand";
 import { HorizontalDeviceMark } from "../components/HorizontalDeviceMark";
 import { DeviceCylinder } from "../components/DeviceCylinder";
@@ -75,7 +75,7 @@ export default function HomeB() {
                 href="/shop"
                 className="group inline-flex items-center gap-2 rounded-full bg-b-ink px-6 py-3 text-[13.5px] font-medium tracking-tight text-b-bg"
               >
-                Pre-order — from $39
+                Buy — from $39
                 <span className="transition group-hover:translate-x-0.5">→</span>
               </Link>
               <Link href="/technology" className="text-[13.5px] text-b-ink/80 hover:text-b-ink">

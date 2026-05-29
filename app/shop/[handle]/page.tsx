@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import { PageShell, Eyebrow } from "../../components/PageShell";
 import { DeviceVisual } from "../../components/DeviceVisual";
+import { ProductImage } from "../../components/ProductImage";
 import { SPECS } from "../../lib/brand";
 
-const PRODUCTS: Record<string, { title: string; subtitle: string; price: string; body: string; dome: string; copy: string }> = {
+const PRODUCTS: Record<string, { title: string; subtitle: string; price: string; body: string; dome: string; copy: string; render?: string; renderTwo?: boolean }> = {
   "forth-1": {
     title: "Forth",
     subtitle: "The original submersible UV-C sterilizer",
@@ -11,6 +12,7 @@ const PRODUCTS: Record<string, { title: string; subtitle: string; price: string;
     body: "#1A2433",
     dome: "#C8D4DC",
     copy: "The complete kit: Forth, induction charging base, fabric travel pouch, and two-year warranty.",
+    render: "/renderings/forth-device-frame-00.png",
   },
   "forth-1-coral": {
     title: "Forth — Coral",
@@ -19,6 +21,7 @@ const PRODUCTS: Record<string, { title: string; subtitle: string; price: string;
     body: "#3F2424",
     dome: "#E89B7C",
     copy: "A warmer take on the original. Same internals, different mood.",
+    render: "/renderings/forth-device-coral-frame-00.png",
   },
   "forth-multi": {
     title: "Forth × 2",
@@ -27,6 +30,8 @@ const PRODUCTS: Record<string, { title: string; subtitle: string; price: string;
     body: "#1A2433",
     dome: "#A6C7B6",
     copy: "Two units. One charging base. Save $6 versus singles.",
+    render: "/renderings/forth-device-frame-00.png",
+    renderTwo: true,
   },
   "dome-replacement": {
     title: "Replacement domes",
@@ -66,11 +71,15 @@ export default function PDP({ params }: { params: { handle: string } }) {
     <PageShell>
       <div className="grid grid-cols-12 gap-10">
         <section className="col-span-12 md:col-span-7">
-          <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-neutral-50 ring-1 ring-black/5">
-            <div className="grid h-full place-items-center">
-              <DeviceVisual className="h-[520px] w-auto" body={p.body} dome={p.dome} ink="#0F1B2D" glow={p.dome} />
+          {p.render ? (
+            <ProductImage src={p.render} alt={p.title} renderTwo={p.renderTwo} />
+          ) : (
+            <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-br from-a-rule/40 to-a-bg ring-1 ring-black/5">
+              <div className="grid h-full place-items-center">
+                <DeviceVisual className="h-[520px] w-auto" body={p.body} dome={p.dome} ink="#0F1B2D" glow={p.dome} />
+              </div>
             </div>
-          </div>
+          )}
           <div className="mt-3 grid grid-cols-5 gap-3">
             {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} className="aspect-square rounded-xl bg-neutral-100 ring-1 ring-black/5" />

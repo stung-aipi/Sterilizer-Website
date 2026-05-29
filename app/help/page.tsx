@@ -16,26 +16,33 @@ export default function Help() {
         </Lead>
       </header>
 
-      <section className="mt-12 grid grid-cols-12 gap-10">
+      <section className="grid grid-cols-12 gap-10">
         <aside className="col-span-12 md:col-span-3">
-          <div className="text-[12px] uppercase tracking-[0.18em] text-neutral-500">Topics</div>
-          <ul className="mt-4 space-y-2 text-[14px]">
-            {CATEGORIES.map((c) => (
-              <li key={c}>
-                <a className="hover:text-neutral-500" href="#">{c}</a>
-              </li>
+          <div className="text-[11px] uppercase tracking-[0.18em] text-neutral-400 mb-3">Topics</div>
+          <div className="flex flex-wrap gap-2 md:flex-col md:gap-2">
+            {CATEGORIES.map((c, i) => (
+              <button
+                key={c}
+                className={`rounded-full px-4 py-2 text-[13px] tracking-tight transition-colors text-left ${
+                  i === 0
+                    ? "bg-a-ink text-a-bg"
+                    : "bg-a-rule/60 text-neutral-700 hover:bg-a-rule"
+                }`}
+              >
+                {c}
+              </button>
             ))}
-          </ul>
+          </div>
         </aside>
         <div className="col-span-12 md:col-span-9">
-          <div className="divide-y divide-black/10 rounded-3xl bg-neutral-50 ring-1 ring-black/5">
+          <div className="divide-y divide-black/10 rounded-3xl bg-white/60 ring-1 ring-black/5">
             {FAQS.map((f) => (
               <details key={f.q} className="group p-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
                   <span className="font-serif text-[20px] leading-snug">{f.q}</span>
-                  <span className="text-neutral-400 transition group-open:rotate-45">＋</span>
+                  <span className="shrink-0 text-neutral-400 transition-transform duration-200 group-open:rotate-45">＋</span>
                 </summary>
-                <p className="mt-4 max-w-2xl text-[14.5px] leading-[1.65] text-neutral-700">{f.a}</p>
+                <p className="mt-4 max-w-2xl text-[14.5px] leading-[1.65] text-neutral-600">{f.a}</p>
               </details>
             ))}
           </div>

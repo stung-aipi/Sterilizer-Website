@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { BRAND } from "../lib/brand";
 import { HorizontalDeviceMark } from "./HorizontalDeviceMark";
 
@@ -57,7 +57,7 @@ export function SiteFooter({ tone = "light" }: { tone?: "light" | "dark" }) {
               <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
             </div>
             <p className={`mt-4 max-w-sm text-[13.5px] leading-relaxed ${isDark ? "text-b-mute" : "text-neutral-600"}`}>
-              A submersible UV-C water sterilizer. Drops into any bottle and disinfects in 60 seconds. Patent-pending technology, designed in the UK.
+              A submersible UV-C water sterilizer. Drops into any bottle and disinfects in 60 seconds. Patent-pending technology, designed in Scotland.
             </p>
             <form className="mt-6 flex max-w-sm gap-2">
               <input

@@ -1,4 +1,4 @@
-// Working brand name — currently leading candidate from the naming sprint.
+﻿// Working brand name — currently leading candidate from the naming sprint.
 // Direction C (geographic / heritage) per PRD §5.3.
 // Change this single constant to retitle the entire site.
 export const BRAND = "Forth";
@@ -58,11 +58,12 @@ export const FAQS = [
 ];
 
 export const USE_CASES = [
-  { tag: "Travel", line: "Mexico City to Marrakech — your bottle, your water, no drama." },
-  { tag: "At home", line: "Tap-to-bottle peace of mind for the school run." },
+  { tag: "At home", line: "Tap-to-bottle peace of mind for the morning rush." },
+  { tag: "The office", line: "Building tap, communal kitchen, water cooler. Done while the kettle boils." },
   { tag: "The gym", line: "Clean refills at the fountain. No more plastic." },
-  { tag: "Outdoors", line: "Streams, lakes, refill stops — disinfected in sixty seconds." },
   { tag: "Hotels", line: "Mini-bar water adds up. Tap water costs nothing." },
+  { tag: "Travel", line: "Mexico City to Marrakech — your bottle, your water, no drama." },
+  { tag: "Outdoors", line: "Streams, lakes, refill stops — disinfected in sixty seconds." },
 ];
 
 export const PRESS_QUOTES = [

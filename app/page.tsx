@@ -1,6 +1,5 @@
 ﻿import Link from "next/link";
 import { BRAND, TAGLINE, SUBLINE, SPECS, COMPARE_ROWS, FAQS, USE_CASES, PRESS_QUOTES } from "./lib/brand";
-import { HorizontalDeviceMark } from "./components/HorizontalDeviceMark";
 import { Logomark } from "./components/Logomark";
 import { DeviceCylinder } from "./components/DeviceCylinder";
 import { VariantToggle } from "./components/VariantToggle";
@@ -8,45 +7,18 @@ import { SiteFooter } from "./components/SiteFooter";
 import { ExplodedReveal } from "./components/ExplodedReveal";
 import { HeroColorPicker } from "./components/HeroColorPicker";
 import { FaqAccordion } from "./components/FaqAccordion";
+import { SiteNav } from "./components/SiteNav";
 
 export const metadata = {
   title: `${BRAND} — Clean water, in any bottle, in seconds.`,
   description: `${BRAND} is a submersible UV-C sterilizer the size of a marker. Designed and assembled in Scotland.`,
 };
 
-const NAV = [
-  { href: "/shop", label: "Shop" },
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/technology", label: "Technology" },
-  { href: "/about", label: "About" },
-  { href: "/help", label: "Help" },
-];
 
 export default function HomeA() {
   return (
     <div className="min-h-screen bg-a-bg text-a-ink bg-grain">
-      {/* Header */}
-      <header className="sticky top-0 z-20 bg-a-bg/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1240px] items-center justify-between px-8 py-6">
-          <Link href="/" className="flex items-center text-a-ink" aria-label={BRAND}>
-            <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
-          </Link>
-          <nav className="hidden items-center gap-8 md:flex">
-            {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className="text-[13.5px] tracking-tight hover:opacity-60">
-                {n.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-[12px] tracking-[0.12em] text-a-ink/60 sm:inline">US · USD</span>
-            <Link href="/shop" className="rounded-full bg-a-ink px-4 py-1.5 text-[13px] text-a-bg">
-              Pre-order
-            </Link>
-          </div>
-        </div>
-        <div className="mx-auto h-px max-w-[1240px] bg-a-rule" />
-      </header>
+      <SiteNav tone="light" />
 
       {/* Hero — editorial split. */}
       <section className="relative">
@@ -68,7 +40,7 @@ export default function HomeA() {
                 href="/shop"
                 className="rounded-full bg-a-ink px-6 py-3 text-[14px] tracking-tight text-a-bg hover:bg-a-ink/85"
               >
-                Pre-order — from $39
+                Buy — from $39
               </Link>
               <Link href="/how-it-works" className="text-[14px] tracking-tight underline-offset-4 hover:underline">
                 How it works →
@@ -81,20 +53,23 @@ export default function HomeA() {
           </div>
         </div>
 
-        {/* Quiet credentials strip */}
-        <div className="border-y border-a-rule bg-a-bg/60">
-          <div className="mx-auto max-w-[1240px] overflow-x-auto px-8 py-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex min-w-max items-center gap-8 font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55">
-              <span>EPA-validated</span>
-              <span aria-hidden className="text-a-ink/25">·</span>
-              <span>87 × 22 mm · 32 g</span>
-              <span aria-hidden className="text-a-ink/25">·</span>
-              <span>30 cycles per charge</span>
-              <span aria-hidden className="text-a-ink/25">·</span>
-              <span>2-year warranty</span>
-              <span aria-hidden className="text-a-ink/25">·</span>
-              <span>Made in Scotland</span>
-            </div>
+        {/* Quiet credentials strip — marquee */}
+        <div className="border-y border-a-rule bg-a-bg/60 overflow-hidden">
+          <div className="animate-ticker flex items-center whitespace-nowrap py-5 font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/55">
+            {[0, 1].map((i) => (
+              <div key={i} aria-hidden={i === 1} className="flex shrink-0 items-center gap-8 pl-8">
+                <span>EPA-validated</span>
+                <span className="text-a-ink/25">·</span>
+                <span>87 × 22 mm · 32 g</span>
+                <span className="text-a-ink/25">·</span>
+                <span>30 cycles per charge</span>
+                <span className="text-a-ink/25">·</span>
+                <span>2-year warranty</span>
+                <span className="text-a-ink/25">·</span>
+                <span>Made in Scotland</span>
+                <span className="text-a-ink/25">·</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -124,7 +99,7 @@ export default function HomeA() {
       </section>
 
       {/* The 30-second story */}
-      <section className="mx-auto max-w-[1240px] px-8 py-28">
+      <section className="mx-auto max-w-[1240px] px-8 py-24">
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-4">
             <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-ink/55">The thirty-second story</div>
@@ -142,7 +117,7 @@ export default function HomeA() {
               { n: "03", h: "Drink", b: "Dual UV-C emitters at 265 nm reach every face of the bottle. Sterile water, every time." },
             ].map((s) => (
               <li key={s.n} className="bg-a-bg p-7">
-                <div className="font-serif text-[14px] italic text-a-ink/55">{s.n}</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-a-ink/50">{s.n}</div>
                 <div className="mt-6 font-serif text-[24px] leading-tight">{s.h}</div>
                 <p className="mt-3 text-[14px] leading-[1.6] text-a-ink/70">{s.b}</p>
               </li>
@@ -155,7 +130,7 @@ export default function HomeA() {
       <ExplodedReveal
         tone="light"
         eyebrow="Inside the cylinder"
-        title="Eight pieces. Six components. One sealed instrument."
+        title="Six components. Eight pieces. One sealed instrument."
         description="Scroll to disassemble. The body resolves into its components — every part engineered to last. No internal replacements needed."
       />
 
@@ -220,7 +195,7 @@ export default function HomeA() {
                 <thead className="bg-a-rule/40">
                   <tr className="text-[11px] uppercase tracking-[0.16em] text-a-ink/60">
                     <th className="px-5 py-4"></th>
-                    <th className="px-5 py-4">{BRAND}</th>
+                    <th className="bg-a-sage/10 px-5 py-4">{BRAND}</th>
                     <th className="px-5 py-4">SteriPen</th>
                     <th className="px-5 py-4">LARQ</th>
                     <th className="px-5 py-4">Tablets</th>
@@ -230,7 +205,7 @@ export default function HomeA() {
                   {COMPARE_ROWS.slice(0, 5).map((row) => (
                     <tr key={row.label} className="border-t border-a-rule">
                       <td className="px-5 py-4 text-a-ink/65">{row.label}</td>
-                      <td className="px-5 py-4 font-medium">{row.forth}</td>
+                      <td className="bg-a-sage/10 px-5 py-4">{row.forth}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.steripen}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.larq}</td>
                       <td className="px-5 py-4 text-a-ink/65">{row.tabs}</td>
@@ -246,9 +221,9 @@ export default function HomeA() {
       {/* Press / social proof */}
       <section className="border-y border-a-rule bg-a-bg/60">
         <div className="mx-auto max-w-[1240px] px-8 py-16">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 divide-x divide-a-rule md:grid-cols-4">
             {PRESS_QUOTES.map((p) => (
-              <figure key={p.source}>
+              <figure key={p.source} className="px-6 first:pl-0 last:pr-0">
                 <blockquote className="font-serif text-[18px] leading-snug text-a-ink/85">
                   “{p.text}”
                 </blockquote>
@@ -483,9 +458,9 @@ export default function HomeA() {
           <div className="col-span-12 md:col-span-6">
             <div className="font-mono text-[11px] uppercase tracking-[0.24em] text-a-bg/55">Early access</div>
             <h3 className="mt-4 font-serif text-[44px] leading-[1.05] tracking-tightish">
-              Pre-orders
+              First to know
               <br />
-              <span className="italic text-a-bg/85">coming soon.</span>
+              <span className="italic text-a-bg/85">when it ships.</span>
             </h3>
             <p className="mt-5 max-w-md text-[15px] leading-[1.65] text-a-bg/75">
               Leave us your address and we'll write once — when the first batch ships from Edinburgh.
@@ -495,7 +470,7 @@ export default function HomeA() {
             <div className="flex-1">
               <label className="text-[11px] uppercase tracking-[0.18em] text-a-bg/60">Email address</label>
               <input
-                placeholder="you@home.com"
+                placeholder="your@email.com"
                 className="mt-2 w-full border-b border-a-bg/30 bg-transparent pb-3 text-[16px] text-a-bg placeholder:text-a-bg/40 focus:border-a-bg focus:outline-none"
               />
             </div>

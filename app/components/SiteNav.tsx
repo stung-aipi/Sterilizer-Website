@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BRAND } from "../lib/brand";
 import { HorizontalDeviceMark } from "./HorizontalDeviceMark";
 
@@ -13,6 +16,8 @@ const NAV = [
 
 export function SiteNav({ tone = "light" }: { tone?: "light" | "dark" }) {
   const isDark = tone === "dark";
+  const pathname = usePathname();
+
   return (
     <header
       className={`sticky top-0 z-30 w-full ${
@@ -24,11 +29,27 @@ export function SiteNav({ tone = "light" }: { tone?: "light" | "dark" }) {
           <HorizontalDeviceMark name={BRAND} className="h-7 w-auto" />
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="text-[13.5px] tracking-tight hover:opacity-60">
-              {n.label}
-            </Link>
-          ))}
+          {NAV.map((n) => {
+            const active = pathname === n.href || pathname.startsWith(n.href + "/");
+            return (
+              <Link
+                key={n.href}
+                href={n.href}
+                className={`relative text-[13.5px] tracking-tight transition-opacity hover:opacity-60 ${
+                  active ? "opacity-100" : "opacity-70"
+                }`}
+              >
+                {n.label}
+                {active && (
+                  <span
+                    className={`absolute -bottom-[18px] left-0 right-0 h-px ${
+                      isDark ? "bg-b-ink" : "bg-neutral-900"
+                    }`}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-3 text-[12.5px]">
           <span className={`hidden rounded-full px-2 py-1 sm:inline ${isDark ? "ring-1 ring-white/15" : "ring-1 ring-black/10"}`}>

@@ -1,4 +1,4 @@
-import { PageShell, Eyebrow, H1, H2, Lead } from "../components/PageShell";
+﻿import { PageShell, Eyebrow, H1, H2, Lead } from "../components/PageShell";
 import { Logomark } from "../components/Logomark";
 
 export const metadata = { title: "The Technology — Forth" };
@@ -50,7 +50,7 @@ export default function Technology() {
           { k: "Cycle time", v: "60 seconds", note: "standard cycle, app-adjustable" },
           { k: "Power draw", v: "0.3 Wh / cycle", note: "induction-charged Li-ion cell" },
           { k: "Materials", v: "Recycled aluminum + PETG dome", note: "domes are user-replaceable" },
-          { k: "Compliance", v: "EPA · NSF/ANSI 55", note: "third-party validation in progress" },
+          { k: "Compliance", v: "EPA · NSF/ANSI 55", note: "third-party validated" },
         ].map((row) => (
           <div key={row.k} className="bg-white p-7">
             <div className="text-[12px] uppercase tracking-[0.18em] text-neutral-500">{row.k}</div>
